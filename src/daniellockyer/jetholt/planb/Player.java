@@ -10,26 +10,28 @@ public class Player extends Entity {
 		this.input = input;
 	}
 
-	public void init() throws SlickException {
+	@Override
+	public void init(Level level) throws SlickException {
+		super.init(level);
 		image = new Image("player.png");
 	}
 
 	@Override
 	public void update() {
 		if (input.isKeyDown(Input.KEY_W)) {
-			setY(getY() - 1);
+			move(0, getY() - 1);
 		}
 
 		if (input.isKeyDown(Input.KEY_A)) {
-			setX(getX() - 1);
+			move(getX() - 1, 0);
 		}
 
 		if (input.isKeyDown(Input.KEY_S)) {
-			setY(getY() + 1);
+			move(0, getY() + 1);
 		}
 
 		if (input.isKeyDown(Input.KEY_D)) {
-			setX(getX() + 1);
+			move(getX() + 1, 0);
 		}
 
 	}
@@ -38,5 +40,4 @@ public class Player extends Entity {
 	public void render(Graphics g) {
 		g.drawImage(image, getX(), getY());
 	}
-
 }

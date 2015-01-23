@@ -5,7 +5,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Main extends BasicGame {
 	public static final int WIDTH = 1024;
-	public static final int HEIGHT = 600;
+	public static final int HEIGHT = 640;
 	private Player player;
 	private Level level;
 
@@ -17,12 +17,12 @@ public class Main extends BasicGame {
 	public void init(GameContainer gc) throws SlickException {
 		Input input = gc.getInput();
 
-		TiledMap map = new TiledMap("map.tmx");
+		TiledMap map = new TiledMap("res/bank.tmx");
 
 		level = new Level(map);
 
 		player = new Player(input);
-		player.init();
+		player.init(level);
 	}
 
 	@Override

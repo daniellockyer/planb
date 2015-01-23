@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Tiles" tilewidth="32" tileheight="32">
+  <image source="tiles.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="tree2" tilewidth="32" tileheight="32">
+  <image source="tree3.png" trans="ff00ff" width="128" height="192"/>
+ </tileset>
+ <layer name="floor" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TywrAIAxE0UBqH/7/B0uhQhlIKdQYixO46MqjC1VEclB61Xpm9HOgX8+L9HH19O/vxf05x8u++tY9vH3rLnV6+zi70QJ5/X/6Y/rYKP7WOPr/8lOH9CH69CN9FtfKpq4AkFwiQwAQAAA=
+  </data>
+ </layer>
+ <layer name="wall4" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SIQ4AIAwEweL5/3tR+NZAKDPJ6TUXETEubevWn8np9+xX6f/dz/61+mv9N/oAACct5OHfhwAQAAA=
+  </data>
+ </layer>
+ <layer name="wall3" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SMQoAMAgEwUvv/99rlcZKwSiBHbh6m5Oks7SLPv3OWXIv+xH9uX7Vdj/71+qv6f/RBwAAmORK4TtJABAAAA==
+  </data>
+ </layer>
+ <layer name="wall2" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NwQkAIAwEwfjW/uu1AR+CIQSZgfsdbAT8ZVxOXz+r9dK//WdPv0d/FWwept+jDwDVNmpIy8UAEAAA
+  </data>
+ </layer>
+ <layer name="wall1" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQoAIBADwVj7//9a2YmVcoKzkHogSdKKNuPz+Xw+n39nfTH+P/6uan/1zenx3/Ul1TQAiIZlsgAQAAA=
+  </data>
+ </layer>
+</map>
