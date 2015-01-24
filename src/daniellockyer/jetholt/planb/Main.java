@@ -30,6 +30,7 @@ public class Main extends BasicGame {
 		time++;
 		level.update();
 		player.update();
+
 	}
 
 	@Override

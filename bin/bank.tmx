@@ -6,19 +6,13 @@
  <tileset firstgid="65" name="tree2" tilewidth="32" tileheight="32">
   <image source="tree2.png" trans="ff00ff" width="128" height="192"/>
  </tileset>
- <tileset firstgid="89" name="door_exterior" tilewidth="32" tileheight="32">
-  <image source="door_exterior.png" trans="ff00ff" width="64" height="96"/>
- </tileset>
- <tileset firstgid="95" name="window" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="window" tilewidth="32" tileheight="32">
   <image source="window.png" trans="ff00ff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="101" name="door_interior" tilewidth="32" tileheight="32">
+ <tileset firstgid="95" name="door_interior" tilewidth="32" tileheight="32">
   <image source="door_interior.png" trans="ff00ff" width="64" height="96"/>
  </tileset>
- <tileset firstgid="107" name="wall_exterior" tilewidth="32" tileheight="32">
-  <image source="wall_exterior.png" width="288" height="128"/>
- </tileset>
- <tileset firstgid="143" name="chain" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="chain" tilewidth="32" tileheight="32">
   <image source="chain.png" width="160" height="32"/>
   <tile id="0">
    <properties>
@@ -46,37 +40,52 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="153" name="wall_exterior_stub" tilewidth="32" tileheight="32">
-  <image source="wall_exterior_stub.png" width="384" height="32"/>
+ <tileset firstgid="106" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="512" height="160"/>
  </tileset>
  <layer name="floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3TywrAIAxE0UBqH/7/B0uhQhlIKdQYixO46MqjC1VEclB61Xpm9HOgX8+L9HH19O/vxf05x8u++tY9vH3rLnV6+zi70QJ5/X/6Y/rYKP7WOPr/8lOH9CH69CN9FtfKpq4AkFwiQwAQAAA=
   </data>
  </layer>
- <layer name="wall_prevault" width="32" height="32" visible="0">
+ <layer name="vault" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SOw6AMAzFws6huQZ/KBetly5IiHRAFe2z5ClRvMTMrCtkorZ+71T9Ovu5qN923/uvuX+t/j/6om2u7+8P6qv/RMAJZ1xwxQ13PPDE0bFzJ83CS18IUYYIEdfTJgAQAAA=
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="wall_offices" width="32" height="32" visible="0">
+ <layer name="wall_prevault" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SSwqAMAwF495Dew3/Wi/q23RTEFuwBnEGZpWQ2cTMrHEyQp/+k7aZ1uyn0H+vX4p3P/dfS/+a/jf68G+O+vc7+vSvCHKQo5zkLBe5yk3uss/YSYmzcNMHAB9Ov9c36AAQAAA=
+   H4sIAAAAAAAAC+3SIQ4AIAwEweL5/3tR+NZAKDPJ6TUXETEubevWn8np9+xX6f/dz/61+mv9N/oAACct5OHfhwAQAAA=
+  </data>
+ </layer>
+ <layer name="prevault" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="wall_offices" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SMQoAMAgEwUvv/99rlcZKwSiBHbh6m5Oks7SLPv3OWXIv+xH9uX7Vdj/71+qv6f/RBwAAmORK4TtJABAAAA==
+  </data>
+ </layer>
+ <layer name="offices" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
  <layer name="wall_foyer" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3PuQrCUBRF0Wvvb2pUcGrU2Dg1cfgBjZrpR93gC0gKtclLkXNgwYUX2MTMrNOQcuqrr7766qvfxn7XgzEmmGKGuYd+D313L7DECiHWHvoBBu7eYIsd9jh46A8xcneEI0444/LRL6zeFe9f//aufov7OW6IcccDTyRIkeH6xzfVlW/5j76mac3sBaUqVgIAEAAA
+   H4sIAAAAAAAAC+3NuQrCQBSF4WvvO8btGVxAjY2xcWvUxq2JNpr4iP7FCHJhLCxM4TnwwWUY+M3MahV5TX311VdfffX/sV//gSFGGCPFJNKfIsPsi9s3EzTCPccCS6ywjvQ32GLn7m7k/f32/SZa4d7jgCNOOEf6OS64uruHPgYf/vh+G51w33BHgRIP0zRN07Tq9gQa0FiIABAAAA==
   </data>
  </layer>
  <layer name="foyer" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NSQqAMBQE0VzPW3kDp5WzJh7UQnTjIioYItgPCoQfbGNERERE/mcJ///Ud3eB992+n0Te99w3GeVUUPXwu3xhP5Sv71tqqKWOehpopIlmqm+8OTtu9mJfROJYAdTibfUAEAAA
+   H4sIAAAAAAAAC+3NWwqAIBRFUafXQHrRW+2/oXeI+gsrSAzaCzYIFzzGAAAA/M8c//8ldPeR9/2+nyXeD9w3uSpUqeqH7+qF/Vi+vu9Uo1rVqV4NalSTsjfu9uTf4+Yu9gGksQK0qRNdABAAAA==
   </data>
  </layer>
- <layer name="walls_outside" width="32" height="32">
+ <layer name="wall_outside" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NxwrCQBRG4fExjb3sNJbYayyxxfLMno0wBJlkI3HxX/i4wzDDMcaYQk4+o7766quvvvrq/7b1bdRXP89+D30M0EEXfuJ+iAAjx3vXH9fMMMcCNdTRyHgeY4IpivCsvcQK65T+Dnsc0EQL7YznDbYIUULZ2kdEOKX0b4hxxxkXXBP3DzzxcryvoGpt+49Go/m/eQO8TbMpABAAAA==
+   H4sIAAAAAAAAC+3SxwrCQBSF4etjWh/E3lb2trLGsrLrE/pLEC6DJNmYuLgHPmYgE87miIikEvKJ9Vu/9Vu/9Vu/9f9GGRVUUUM95v4e+hhgiFHM/UussMYGXsz9Z1xwxQ33mPuDknS/3mURJfm+1waazjf93v1P/xMUvcs0MshGvHfQFX/fLbTV+d74GJOQfr3LHPIoRLzPsRB/31PM1Olhi11Iv97lESfx96rv7nYfeDpv9jioU7+zWCz/lxfuPYryABAAAA==
   </data>
  </layer>
  <layer name="outside" width="32" height="32" opacity="0.9">
@@ -101,7 +110,7 @@
   <object id="36" x="984" y="416" width="8" height="192"/>
   <object id="39" x="864" y="400" width="128" height="16"/>
   <object id="40" x="864" y="480" width="8" height="16"/>
-  <object id="43" x="864" y="496" width="112" height="16"/>
+  <object id="43" x="864" y="496" width="120" height="16"/>
   <object id="44" x="864" y="576" width="8" height="16"/>
   <object id="48" x="96" y="672" width="512" height="32"/>
   <object id="51" x="608" y="480" width="56"/>

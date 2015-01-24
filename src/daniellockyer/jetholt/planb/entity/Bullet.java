@@ -12,7 +12,7 @@ public class Bullet extends Entity {
 
 	public Bullet(Vector2f position, double angle) {
 		this.position = position;
-		this.direction = new Vector2f((float) Math.cos(angle), (float) Math.sin(angle));
+		this.direction = new Vector2f((float) Math.sin(angle), (float) Math.cos(angle));
 	}
 
 	@Override

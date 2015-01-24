@@ -1,7 +1,6 @@
 package daniellockyer.jetholt.planb;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -35,7 +34,15 @@ public class Level {
 				int y = map.getObjectY(gi, oi);
 				int width = map.getObjectWidth(gi, oi);
 				int height = map.getObjectHeight(gi, oi);
-				walls.add(new Wall(new Rectangle(x, y, width, height)));
+				String a = map.getObjectName(gi, oi);
+
+				Wall w = new Wall(new Rectangle(x, y, width, height));
+				if (!a.equals("")) {
+					w.setName(a);
+					w.setWalkable(true);
+				}
+
+				walls.add(w);
 			}
 		}
 
@@ -43,23 +50,24 @@ public class Level {
 		WALL_OUTSIDE = map.getLayerIndex("wall_outside");
 		FOYER = map.getLayerIndex("foyer");
 		WALL_FOYER = map.getLayerIndex("wall_foyer");
-		OFFICES = 0;
-		//OFFICES = map.getLayerIndex("offices");
+		OFFICES = map.getLayerIndex("offices");
 		WALL_OFFICES = map.getLayerIndex("wall_offices");
-		PREVAULT = 0;
-		//PREVAULT = map.getLayerIndex("prevault");
+		PREVAULT = map.getLayerIndex("prevault");
 		WALL_PREVAULT = map.getLayerIndex("wall_prevault");
 		FLOOR = map.getLayerIndex("floor");
 
 		layersToDraw.add(WALL_OUTSIDE);
-		layersToDraw.add(OUTSIDE);
 	}
 
 	public void update() {
+		ArrayList<Entity> toremove = new ArrayList<Entity>();
+
 		for (Entity e : entities) {
 			e.update();
-			if (e.removed) entities.remove(e);
+			if (e.removed) toremove.add(e);
+
 		}
+		entities.removeAll(toremove);
 	}
 
 	public void moveOffset(int y) {
@@ -68,13 +76,15 @@ public class Level {
 
 	public void render(Graphics g) {
 		map.render(0, yOffset, FLOOR);
-		//map.render(0, yOffset, PREVAULT);
-		//map.render(0, yOffset, OFFICES);
+		map.render(0, yOffset, PREVAULT);
+		map.render(0, yOffset, OFFICES);
 		map.render(0, yOffset, FOYER);
 
 		for (int i : layersToDraw) {
 			map.render(0, yOffset, i);
 		}
+
+		map.render(0, yOffset, OUTSIDE);
 
 		for (Wall w : walls) {
 			g.setColor(Color.green);
@@ -88,10 +98,7 @@ public class Level {
 	}
 
 	public void up() {
-		if (layersToDraw.contains(WALL_OUTSIDE)) {
-			layersToDraw.remove((Object) WALL_OUTSIDE);
-			layersToDraw.add(WALL_FOYER);
-		} else if (layersToDraw.contains(WALL_PREVAULT)) {
+		if (layersToDraw.contains(WALL_PREVAULT)) {
 			return;
 		} else if (layersToDraw.contains(WALL_OFFICES)) {
 			layersToDraw.remove((Object) WALL_OFFICES);
@@ -99,7 +106,11 @@ public class Level {
 		} else if (layersToDraw.contains(WALL_FOYER)) {
 			layersToDraw.remove((Object) WALL_FOYER);
 			layersToDraw.add(WALL_OFFICES);
+		} else if (layersToDraw.contains(WALL_OUTSIDE)) {
+			layersToDraw.remove((Object) WALL_OUTSIDE);
+			layersToDraw.add(WALL_FOYER);
 		}
+		Collections.sort(layersToDraw);
 	}
 
 	public void add(Entity e) {
@@ -120,7 +131,7 @@ public class Level {
 			float x1 = pos.x + xa;
 			float y1 = pos.y + ya;
 			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()) {
-				if (y1 <= y0 + w.getHeight() - 8 && y1 + e.getHeight() >= y0 - 12) { return true; }
+				if (y1 <= y0 + w.getHeight() && y1 + e.getHeight() >= y0) { return true; }
 			}
 		}
 		return false;
@@ -152,6 +163,19 @@ public class Level {
 		return result;
 	}
 
+	public String wallName(Entity e) {
+		for (int i = 0; i < walls.size(); i++) {
+			Wall w = walls.get(i);
+			float x0 = w.getBoundaries().getX();
+			float y0 = w.getBoundaries().getY() + yOffset;
+			float x1 = e.getPosition().x;
+			float y1 = e.getPosition().y;
+			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
+					&& y1 + e.getHeight() >= y0) { return w.getName(); }
+		}
+		return "";
+	}
+
 	public boolean wall(Entity e, float xa, float ya) {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
@@ -159,6 +183,7 @@ public class Level {
 			float y0 = w.getBoundaries().getY() + yOffset;
 			float x1 = e.getPosition().x + xa;
 			float y1 = e.getPosition().y + ya;
+			if (w.isWalkable()) return false;
 			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
 					&& y1 + e.getHeight() >= y0) { return true; }
 		}

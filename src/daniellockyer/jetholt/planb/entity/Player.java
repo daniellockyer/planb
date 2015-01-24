@@ -29,25 +29,19 @@ public class Player extends Entity {
 	public void update() {
 		float dx = 0, dy = 0;
 
-		/* player */
-
 		if (input.isKeyDown(Input.KEY_W)) {
-			angle = 0;
 			dy--;
 		}
 
 		if (input.isKeyDown(Input.KEY_A)) {
-			angle = 270;
 			dx--;
 		}
 
 		if (input.isKeyDown(Input.KEY_S)) {
-			angle = 180;
 			dy++;
 		}
 
 		if (input.isKeyDown(Input.KEY_D)) {
-			angle = 90;
 			dx++;
 		}
 
@@ -55,12 +49,27 @@ public class Player extends Entity {
 			level.add(new Bullet(position.copy(), angle));
 		}
 
-		if (position.x + dx > 0 && position.x + dy + width < Main.WIDTH - 1) {
-			if (level.wall(this, dx * slowdown, 0)) {
+		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1) {
+			if (!level.wall(this, dx * slowdown, 0)) {
 				move(dx * slowdown, 0);
 			}
-			if (level.wall(this, 0, dy * slowdown)) {
+			if (!level.wall(this, 0, dy * slowdown)) {
 				move(0, dy * slowdown);
+			}
+
+			String name = level.wallName(this);
+
+			if (name != null) {
+				switch (name) {
+				case "collision_door_main":
+					level.up();
+					break;
+				case "collision_door_staff":
+					level.up();
+					break;
+				default:
+					break;
+				}
 			}
 		}
 
