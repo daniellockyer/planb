@@ -28,7 +28,9 @@ public class Level {
 		this.map = map;
 		this.width = map.getWidth();
 		this.height = map.getHeight();
-
+		
+		System.out.println(map.getLayerCount());
+		
 		layersToDraw.add(WALL_OUTSIDE);
 		layersToDraw.add(FOREGROUND);
 	}
