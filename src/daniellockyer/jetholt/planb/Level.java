@@ -75,8 +75,8 @@ public class Level {
 	}
 
 	public void translate(int amount) {
-		if (main.yOffset + (-12 * amount) < -96 && main.yOffset + (-12 * amount) > -372)
-			main.yOffset += -12 * amount;
+		if (main.yOffset + (12 * amount) < -96 && main.yOffset + (12 * amount) > -372)
+			main.yOffset += 12 * amount;
 	}
 
 	public void render(int yOffset, Graphics g) {

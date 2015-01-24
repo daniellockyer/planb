@@ -104,11 +104,11 @@ public class Player extends Entity {
 		}
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
-			level.translate(1);
+			level.translate(-1);
 		}
 
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			level.translate(-1);
+			level.translate(1);
 		}
 
 		if (input.isKeyPressed(Input.KEY_O)) {
