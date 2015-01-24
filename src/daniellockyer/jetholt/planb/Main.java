@@ -19,9 +19,7 @@ public class Main extends BasicGame {
 	public void init(GameContainer gc) throws SlickException {
 		Input input = gc.getInput();
 
-		TiledMap map = new TiledMap("res/bank.tmx");
-
-		level = new Level(map);
+		level = new Level(new TiledMap("res/bank.tmx"));
 
 		player = new Player(input);
 		player.init(level);

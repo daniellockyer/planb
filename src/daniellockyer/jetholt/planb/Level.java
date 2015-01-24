@@ -21,12 +21,16 @@ public class Level {
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
+	private final int FOREGROUND = 5, WALL_OUTSIDE = 4, WALL_FOYER = 3, WALL_OFFICES = 2,
+			WALL_PREVAULT = 1, FLOOR = 0;
+
 	public Level(TiledMap map) {
 		this.map = map;
 		this.width = map.getWidth();
 		this.height = map.getHeight();
 
-		layersToDraw.add(4);
+		layersToDraw.add(WALL_OUTSIDE);
+		layersToDraw.add(FOREGROUND);
 	}
 
 	public void update() {
@@ -42,7 +46,8 @@ public class Level {
 	}
 
 	public void render(Graphics g) {
-		map.render(xOffset, yOffset, 0);
+		map.render(xOffset, yOffset, FLOOR);
+
 		for (int i : layersToDraw) {
 			map.render(xOffset, yOffset, i);
 		}
@@ -126,19 +131,17 @@ public class Level {
 	}
 
 	public void up() {
-		if (layersToDraw.contains(4)) {
-			layersToDraw.remove((Object) 4);
-			layersToDraw.add(3);
-		} else if (layersToDraw.contains(2)) {
-			layersToDraw.remove((Object) 2);
-			layersToDraw.add(1);
-		} else if (layersToDraw.contains(3)) {
-			layersToDraw.add(2);
+		if (layersToDraw.contains(WALL_OUTSIDE)) {
+			layersToDraw.remove((Object) WALL_OUTSIDE);
+			layersToDraw.add(WALL_FOYER);
+		} else if (layersToDraw.contains(WALL_PREVAULT)) {
+			return;
+		} else if (layersToDraw.contains(WALL_OFFICES)) {
+			layersToDraw.remove((Object) WALL_OFFICES);
+			layersToDraw.add(WALL_PREVAULT);
+		} else if (layersToDraw.contains(WALL_FOYER)) {
+			layersToDraw.remove((Object) WALL_FOYER);
+			layersToDraw.add(WALL_OFFICES);
 		}
-
-		for (int i : layersToDraw) {
-			// System.out.println(map.getTileSet(i).name);
-		}
-		System.out.println();
 	}
 }
