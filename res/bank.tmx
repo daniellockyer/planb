@@ -15,17 +15,20 @@
  <tileset firstgid="101" name="door_interior" tilewidth="32" tileheight="32">
   <image source="door_interior.png" trans="ff00ff" width="64" height="96"/>
  </tileset>
+ <tileset firstgid="107" name="wall_exterior" tilewidth="32" tileheight="32">
+  <image source="wall_exterior.png" width="288" height="128"/>
+ </tileset>
  <layer name="floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3TywrAIAxE0UBqH/7/B0uhQhlIKdQYixO46MqjC1VEclB61Xpm9HOgX8+L9HH19O/vxf05x8u++tY9vH3rLnV6+zi70QJ5/X/6Y/rYKP7WOPr/8lOH9CH69CN9FtfKpq4AkFwiQwAQAAA=
   </data>
  </layer>
- <layer name="wall_prevault" width="32" height="32" visible="0">
+ <layer name="wall_prevault" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3SIQ4AIAwEweL5/3tR+NZAKDPJ6TUXETEubevWn8np9+xX6f/dz/61+mv9N/oAACct5OHfhwAQAAA=
   </data>
  </layer>
- <layer name="wall_offices" width="32" height="32" visible="0">
+ <layer name="wall_offices" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3SMQoAMAgEwUvv/99rlcZKwSiBHbh6m5Oks7SLPv3OWXIv+xH9uX7Vdj/71+qv6f/RBwAAmORK4TtJABAAAA==
   </data>
@@ -37,7 +40,12 @@
  </layer>
  <layer name="walls_outside" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2QOwqAQAwFY+0J/X/vf4Z9jZBikbAqWzgDQ9KEgZiZNZW8oE+fPn369Ol/Y5uR/n/6d9Tu537zttH+Ile5BXd/28nezZL+Lg95Bnd/O8jRzZL+Eyc5uxntA0AdEkVxXe0AEAAA
+   H4sIAAAAAAAAC+3NxwoCMRSF4bj2Ce11Z2/Yxd71mf0XMxCGELKRETwHPm4SbjjGGJNJSRz1q1/96le/+tX/HVkH9f9Pvy9p93fRQx8ttNFJvA8wxMhxD/njyxQzzFFBFbXA8wpjTJBD3poLLKMdX7bYYY86GmgGnk9YY4MCitY84Bjt+HLDHQ+cccE18f7EC2/HPf5TQtma9o6iKL+XD5k/prEAEAAA
+  </data>
+ </layer>
+ <layer name="foregroud" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Ntw2AABDAQFYj5xz3nwQvgZ7Clq52kpiZmZnZV6XIkKMI+JeoUKMJ+Lfo0GMI+I+YMGMJ+K/YsOMI+J+4cOMJ+JvZv3oBjaulvQAQAAA=
   </data>
  </layer>
 </map>

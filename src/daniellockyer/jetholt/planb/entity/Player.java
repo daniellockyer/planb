@@ -10,6 +10,8 @@ public class Player extends Entity {
 
 	public Player(Input input) {
 		this.input = input;
+		this.position.x = 30;
+		this.position.y = 450;
 	}
 
 	@Override
