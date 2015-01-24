@@ -23,8 +23,8 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public void init(Level level) throws SlickException {
-		super.init(level);
+	public void init(Main main, Level level) throws SlickException {
+		super.init(main, level);
 		image = new Image("player2.png");
 	}
 
@@ -80,6 +80,18 @@ public class Player extends Entity {
 					}
 					break;
 				case "collision_door_staff":
+					if (!level.getWallIntersect(this).been()) {
+						level.getWallIntersect(this).done();
+						level.up();
+					}
+					break;
+				case "collision_door_vault":
+					if (!level.getWallIntersect(this).been()) {
+						level.getWallIntersect(this).done();
+						level.up();
+					}
+					break;
+				case "collision_door_prevault":
 					if (!level.getWallIntersect(this).been()) {
 						level.getWallIntersect(this).done();
 						level.up();

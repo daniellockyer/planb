@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import daniellockyer.jetholt.planb.Level;
+import daniellockyer.jetholt.planb.Main;
 
 public abstract class Entity {
 	protected Level level;
@@ -14,13 +15,15 @@ public abstract class Entity {
 	protected float width, height;
 	public boolean removed = false;
 	protected int direction;
+	protected Main main;
 	protected Random r = new Random();
 
 	protected Entity() {
 		position = new Vector2f(0, 0);
 	}
 
-	public void init(Level level) throws SlickException {
+	public void init(Main main, Level level) throws SlickException {
+		this.main = main;
 		this.level = level;
 	}
 

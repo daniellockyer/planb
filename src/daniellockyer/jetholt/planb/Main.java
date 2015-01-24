@@ -25,7 +25,7 @@ public class Main extends BasicGame {
 		gui = new GUI(this);
 		gui.setMessage("Hello world! This is a text demo....");
 		player = new Player(input);
-		player.init(level);
+		player.init(this, level);
 	}
 
 	@Override
@@ -37,12 +37,9 @@ public class Main extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		// int yScroll = player.getY() - ((Main.HEIGHT - 8) / 2);
-		int yScroll = yOffset;
-
-		level.render(yScroll, g);
+		level.render(yOffset, g);
 		gui.render(g);
-		player.render(yScroll, g);
+		player.render(yOffset, g);
 	}
 
 	public static void main(String[] args) {

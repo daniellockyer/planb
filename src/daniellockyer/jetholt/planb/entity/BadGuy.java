@@ -6,6 +6,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Vector2f;
 
 import daniellockyer.jetholt.planb.Level;
+import daniellockyer.jetholt.planb.Main;
 import daniellockyer.jetholt.planb.commands.Command;
 
 public class BadGuy extends Entity {
@@ -22,8 +23,8 @@ public class BadGuy extends Entity {
 	}
 
 	@Override
-	public void init(Level level) throws SlickException {
-		super.init(level);
+	public void init(Main main, Level level) throws SlickException {
+		super.init(main, level);
 
 		switch (name) {
 		case "neo":
@@ -73,18 +74,17 @@ public class BadGuy extends Entity {
 			break;
 		case 2:
 		case 3:
-			g.drawImage(stop, getX(), getY());
+			g.drawImage(stop, getX(), getY() + main.yOffset);
 			break;
 		case 4:
 			break;
 		case 5:
 		case 6:
-			g.drawImage(stop.getFlippedCopy(false, true), getX(), getY());
+			g.drawImage(stop.getFlippedCopy(false, true), getX(), getY() + main.yOffset);
 			break;
 		case 7:
 			break;
 		}
 		// g.drawImage(stop, getX(), getY());
 	}
-
 }

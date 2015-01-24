@@ -75,7 +75,8 @@ public class Level {
 	}
 
 	public void translate(int amount) {
-		main.yOffset += -12 * amount;
+		if (main.yOffset + (-12 * amount) < -96 && main.yOffset + (-12 * amount) > -372)
+			main.yOffset += -12 * amount;
 	}
 
 	public void render(int yOffset, Graphics g) {
@@ -94,7 +95,7 @@ public class Level {
 
 		map.render(0, yOffset, OUTSIDE);
 
-		if (false) {
+		if (true) {
 			for (Wall w : walls) {
 				g.setColor(Color.green);
 				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + yOffset, w
@@ -118,7 +119,7 @@ public class Level {
 
 	public void add(Entity e) {
 		try {
-			e.init(this);
+			e.init(main, this);
 			entities.add(e);
 		} catch (SlickException e1) {
 			e1.printStackTrace();

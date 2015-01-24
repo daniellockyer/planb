@@ -17,8 +17,8 @@ public class Civilian extends Entity {
 	}
 
 	@Override
-	public void init(Level level) throws SlickException {
-		super.init(level);
+	public void init(Main main,Level level) throws SlickException {
+		super.init(main, level);
 		image = new Image("civilian.png");
 	}
 
