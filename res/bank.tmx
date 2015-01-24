@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="68">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="70">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="tiles.png" width="256" height="256"/>
  </tileset>
@@ -18,6 +18,37 @@
  <tileset firstgid="107" name="wall_exterior" tilewidth="32" tileheight="32">
   <image source="wall_exterior.png" width="288" height="128"/>
  </tileset>
+ <tileset firstgid="143" name="chain" tilewidth="32" tileheight="32">
+  <image source="chain.png" width="160" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="blended" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="blended" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="blended" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="blended" value="true"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="blended" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="153" name="wall_exterior_stub" tilewidth="32" tileheight="32">
+  <image source="wall_exterior_stub.png" width="384" height="32"/>
+ </tileset>
  <layer name="floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3TywrAIAxE0UBqH/7/B0uhQhlIKdQYixO46MqjC1VEclB61Xpm9HOgX8+L9HH19O/vxf05x8u++tY9vH3rLnV6+zi70QJ5/X/6Y/rYKP7WOPr/8lOH9CH69CN9FtfKpq4AkFwiQwAQAAA=
@@ -25,49 +56,54 @@
  </layer>
  <layer name="wall_prevault" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SKQ6AQBQE0cFzVTbDZtgM26EpQ4KcMZ8wdCdPl2nnnEteci+2fupJ/Tj7oVP/333fv4b+Wv1v9C2WIUeBEpVxv0aDFh164/6AERNmLMb9FRt2HDiN+5qmaZr23AWjUOp3ABAAAA==
+   H4sIAAAAAAAAC+2SOw6AMAzFws6huQZ/KBetly5IiHRAFe2z5ClRvMTMrCtkorZ+71T9Ovu5qN923/uvuX+t/j/6om2u7+8P6qv/RMAJZ1xwxQ13PPDE0bFzJ83CS18IUYYIEdfTJgAQAAA=
   </data>
  </layer>
  <layer name="wall_offices" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SMQoAMAgEwUvv/99rlcZKwSiBHbh6m5Oks7SLPv3OWXIv+xH9uX7Vdj/71+qv6f/RBwAAmORK4TtJABAAAA==
+   H4sIAAAAAAAAC+2SSwqAMAwF495Dew3/Wi/q23RTEFuwBnEGZpWQ2cTMrHEyQp/+k7aZ1uyn0H+vX4p3P/dfS/+a/jf68G+O+vc7+vSvCHKQo5zkLBe5yk3uss/YSYmzcNMHAB9Ov9c36AAQAAA=
   </data>
  </layer>
- <layer name="wall_foyer" width="32" height="32" visible="0">
+ <layer name="wall_foyer" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NNw6AQBQD0U/PNYkSqSE1pIZ0aKZYrrAU2NKT3I2ZWfCRd+qrr7766qv/x37oQYESFWo0HvoRYvdbdOgxYPTQT5C6P2HGghWbh36G3P0dB05cuE3TNE3TvtsDUBxaowAQAAA=
+   H4sIAAAAAAAAC+3PuQrCUBRF0Wvvb2pUcGrU2Dg1cfgBjZrpR93gC0gKtclLkXNgwYUX2MTMrNOQcuqrr7766qvfxn7XgzEmmGKGuYd+D313L7DECiHWHvoBBu7eYIsd9jh46A8xcneEI0444/LRL6zeFe9f//aufov7OW6IcccDTyRIkeH6xzfVlW/5j76mac3sBaUqVgIAEAAA
   </data>
  </layer>
- <layer name="walls_outside" width="32" height="32" visible="0">
+ <layer name="foyer" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3Stw7CMBSF4ctj0utG7y1A6J1n5o8ihIfIyYLDcI/0yR5sneWIiGRS8on2a7/2a7/2a7/2/0YbHXTRQ99x/wRTzDDHwnH/Bj622GHvuP+CK2644+G435a0+81dNtGS6L0OMLS8t/2xxdxlGRVUE95HGEu47yxyxhlsfAkvpt+X7y5rqKOR8L7CWsJ951EwzmDjBxxj+s1dnnCW6L0+8bK8L6JknOYfjUbzf3kD+/yG2QAQAAA=
+   H4sIAAAAAAAAC+3NSQqAMBQE0VzPW3kDp5WzJh7UQnTjIioYItgPCoQfbGNERERE/mcJ///Ud3eB992+n0Te99w3GeVUUPXwu3xhP5Sv71tqqKWOehpopIlmqm+8OTtu9mJfROJYAdTibfUAEAAA
   </data>
  </layer>
- <layer name="foreground" width="32" height="32" visible="0" opacity="0.9">
+ <layer name="walls_outside" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NxwrCQBRG4fExjb3sNJbYayyxxfLMno0wBJlkI3HxX/i4wzDDMcaYQk4+o7766quvvvrq/7b1bdRXP89+D30M0EEXfuJ+iAAjx3vXH9fMMMcCNdTRyHgeY4IpivCsvcQK65T+Dnsc0EQL7YznDbYIUULZ2kdEOKX0b4hxxxkXXBP3DzzxcryvoGpt+49Go/m/eQO8TbMpABAAAA==
+  </data>
+ </layer>
+ <layer name="outside" width="32" height="32" opacity="0.9">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3NxwmAABTAUFez9173n8Qc3eCDJPDOSRIzMzOz/5YiQ44i4F+iQo0m4N+iQ48h4D9iwowl4L9iw44j4H/iwo0n4G9m9u0FWv/xegAQAAA=
   </data>
  </layer>
-<objectgroup name="collision">
+ <objectgroup name="collision" visible="0">
   <object id="14" x="32" y="784" width="576" height="16"/>
   <object id="22" x="736" y="784" width="96" height="16"/>
   <object id="23" x="32" y="592" width="704" height="16"/>
   <object id="24" x="800" y="592" width="32" height="16"/>
   <object id="25" name="collision_door_staff" x="736" y="592" width="64" height="16"/>
   <object id="26" name="collision_door_main" x="608" y="784" width="128" height="16"/>
-  <object id="27" x="816" y="608" width="16" height="192"/>
-  <object id="29" x="32" y="608" width="16" height="192"/>
-  <object id="30" x="32" y="480" width="16" height="128"/>
+  <object id="27" x="824" y="608" width="8" height="192"/>
+  <object id="29" x="32" y="608" width="8" height="192"/>
+  <object id="30" x="32" y="480" width="8" height="128"/>
   <object id="31" x="32" y="416" width="640" height="64"/>
-  <object id="32" x="656" y="480" width="16" height="32"/>
+  <object id="32" x="664" y="480" width="8" height="32"/>
   <object id="33" x="832" y="592" width="160" height="16"/>
   <object id="34" x="984" y="608" width="8"/>
-  <object id="36" x="976" y="416" width="16" height="192"/>
+  <object id="36" x="984" y="416" width="8" height="192"/>
   <object id="39" x="864" y="400" width="128" height="16"/>
-  <object id="40" x="864" y="480" width="16" height="16"/>
+  <object id="40" x="864" y="480" width="8" height="16"/>
   <object id="43" x="864" y="496" width="112" height="16"/>
-  <object id="44" x="864" y="576" width="16" height="16"/>
-  <object id="48" x="96" y="688" width="512" height="8"/>
+  <object id="44" x="864" y="576" width="8" height="16"/>
+  <object id="48" x="96" y="672" width="512" height="32"/>
   <object id="51" x="608" y="480" width="56"/>
   <object id="53" x="608" y="192" width="64" height="288"/>
   <object id="55" x="672" y="272" width="32" height="16"/>
@@ -77,8 +113,10 @@
   <object id="61" x="928" y="0" width="64" height="128"/>
   <object id="62" x="32" y="0" width="896" height="64"/>
   <object id="63" x="32" y="64" width="64" height="352"/>
-  <object id="65" x="976" y="192" width="16" height="88"/>
-  <object id="66" x="976" y="288" width="16" height="128"/>
+  <object id="65" x="984" y="192" width="8" height="96"/>
+  <object id="66" x="984" y="288" width="8" height="128"/>
   <object id="67" x="944" y="288" width="32" height="112"/>
+  <object id="68" x="704" y="160" width="128" height="32"/>
+  <object id="69" x="704" y="272" width="128" height="16"/>
  </objectgroup>
 </map>

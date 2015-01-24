@@ -24,6 +24,11 @@ public abstract class Entity {
 
 	public abstract void render(Graphics g);
 
+	protected void setSize(float i, float j) {
+		width = i;
+		height = j;
+	}
+
 	public void setPosition(float x, float y) {
 		position.x = x;
 		position.y = y;
@@ -41,17 +46,17 @@ public abstract class Entity {
 		return position;
 	}
 
+	public void move(float xa, float ya) {
+		position.x += xa;
+		position.y += ya;
+	}
+
 	public void remove() {
 		removed = true;
 	}
 
 	public int getX() {
 		return (int) position.x;
-	}
-
-	public void move(float xa, float ya) {
-		position.x += xa;
-		position.y += ya;
 	}
 
 	public int getY() {

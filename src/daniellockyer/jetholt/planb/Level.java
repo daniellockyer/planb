@@ -3,59 +3,102 @@ package daniellockyer.jetholt.planb;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
-import daniellockyer.jetholt.planb.entity.Bullet;
 import daniellockyer.jetholt.planb.entity.Entity;
 
 public class Level {
 	private final int TILE_SIZE = 32;
 	private int width, height;
 	private TiledMap map;
-	private int xOffset = 0 * TILE_SIZE;
 	private int yOffset = -12 * TILE_SIZE;
 	private ArrayList<Integer> layersToDraw = new ArrayList<Integer>();
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
-	private final int FOREGROUND = 5, WALL_OUTSIDE = 4, WALL_FOYER = 3, WALL_OFFICES = 2,
-			WALL_PREVAULT = 1, FLOOR = 0;
+	private final int OUTSIDE, WALL_OUTSIDE, FOYER, WALL_FOYER, OFFICES, WALL_OFFICES, PREVAULT,
+			WALL_PREVAULT, FLOOR;
 
 	public Level(TiledMap map) {
 		this.map = map;
 		this.width = map.getWidth();
 		this.height = map.getHeight();
-		
-		System.out.println(map.getLayerCount());
-		
+
+		int objectGroupCount = map.getObjectGroupCount();
+		for (int gi = 0; gi < objectGroupCount; gi++) {
+			int objectCount = map.getObjectCount(gi);
+			for (int oi = 0; oi < objectCount; oi++) {
+				int x = map.getObjectX(gi, oi);
+				int y = map.getObjectY(gi, oi);
+				int width = map.getObjectWidth(gi, oi);
+				int height = map.getObjectHeight(gi, oi);
+				walls.add(new Wall(new Rectangle(x, y, width, height)));
+			}
+		}
+
+		OUTSIDE = map.getLayerIndex("outside");
+		WALL_OUTSIDE = map.getLayerIndex("wall_outside");
+		FOYER = map.getLayerIndex("foyer");
+		WALL_FOYER = map.getLayerIndex("wall_foyer");
+		OFFICES = 0;
+		//OFFICES = map.getLayerIndex("offices");
+		WALL_OFFICES = map.getLayerIndex("wall_offices");
+		PREVAULT = 0;
+		//PREVAULT = map.getLayerIndex("prevault");
+		WALL_PREVAULT = map.getLayerIndex("wall_prevault");
+		FLOOR = map.getLayerIndex("floor");
+
 		layersToDraw.add(WALL_OUTSIDE);
-		layersToDraw.add(FOREGROUND);
+		layersToDraw.add(OUTSIDE);
 	}
 
 	public void update() {
-		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).update();
-			if (entities.get(i).removed) entities.remove(i);
+		for (Entity e : entities) {
+			e.update();
+			if (e.removed) entities.remove(e);
 		}
 	}
 
-	public void moveOffset(int x, int y) {
-		xOffset += x * TILE_SIZE;
+	public void moveOffset(int y) {
 		yOffset += y * TILE_SIZE;
 	}
 
 	public void render(Graphics g) {
-		map.render(xOffset, yOffset, FLOOR);
+		map.render(0, yOffset, FLOOR);
+		//map.render(0, yOffset, PREVAULT);
+		//map.render(0, yOffset, OFFICES);
+		map.render(0, yOffset, FOYER);
 
 		for (int i : layersToDraw) {
-			map.render(xOffset, yOffset, i);
+			map.render(0, yOffset, i);
+		}
+
+		for (Wall w : walls) {
+			g.setColor(Color.green);
+			g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + yOffset, w
+					.getBoundaries().getWidth(), w.getBoundaries().getHeight());
 		}
 
 		for (Entity e : entities) {
 			e.render(g);
+		}
+	}
+
+	public void up() {
+		if (layersToDraw.contains(WALL_OUTSIDE)) {
+			layersToDraw.remove((Object) WALL_OUTSIDE);
+			layersToDraw.add(WALL_FOYER);
+		} else if (layersToDraw.contains(WALL_PREVAULT)) {
+			return;
+		} else if (layersToDraw.contains(WALL_OFFICES)) {
+			layersToDraw.remove((Object) WALL_OFFICES);
+			layersToDraw.add(WALL_PREVAULT);
+		} else if (layersToDraw.contains(WALL_FOYER)) {
+			layersToDraw.remove((Object) WALL_FOYER);
+			layersToDraw.add(WALL_OFFICES);
 		}
 	}
 
@@ -72,8 +115,8 @@ public class Level {
 	public boolean wall(Vector2f pos, Entity e, float xa, float ya) {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
-			float x0 = w.getPosition().x;
-			float y0 = w.getPosition().y;
+			float x0 = w.getBoundaries().getX();
+			float y0 = w.getBoundaries().getY() + yOffset;
 			float x1 = pos.x + xa;
 			float y1 = pos.y + ya;
 			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()) {
@@ -109,41 +152,17 @@ public class Level {
 		return result;
 	}
 
-	public boolean wall(Entity e, int xa, int ya) {
+	public boolean wall(Entity e, float xa, float ya) {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
-			float x0 = w.getPosition().x;
-			float y0 = w.getPosition().y;
+			float x0 = w.getBoundaries().getX();
+			float y0 = w.getBoundaries().getY() + yOffset;
 			float x1 = e.getPosition().x + xa;
 			float y1 = e.getPosition().y + ya;
-			int xOffset0 = 0;
-			int xOffset1 = 0;
-			int yOffset0 = 0;
-			int yOffset1 = 0;
-			if (e instanceof Bullet) {
-				xOffset0 = 0;
-				xOffset1 = -8;
-				yOffset0 = 8;
-			}
-			if (x1 + e.getWidth() + xOffset1 >= x0 && x1 <= x0 + w.getWidth() + xOffset0) {
-				if (y1 <= y0 + w.getHeight() + yOffset1 && y1 + e.getHeight() >= y0 + yOffset0) { return true; }
-			}
+			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
+					&& y1 + e.getHeight() >= y0) { return true; }
 		}
 		return false;
 	}
 
-	public void up() {
-		if (layersToDraw.contains(WALL_OUTSIDE)) {
-			layersToDraw.remove((Object) WALL_OUTSIDE);
-			layersToDraw.add(WALL_FOYER);
-		} else if (layersToDraw.contains(WALL_PREVAULT)) {
-			return;
-		} else if (layersToDraw.contains(WALL_OFFICES)) {
-			layersToDraw.remove((Object) WALL_OFFICES);
-			layersToDraw.add(WALL_PREVAULT);
-		} else if (layersToDraw.contains(WALL_FOYER)) {
-			layersToDraw.remove((Object) WALL_FOYER);
-			layersToDraw.add(WALL_OFFICES);
-		}
-	}
 }

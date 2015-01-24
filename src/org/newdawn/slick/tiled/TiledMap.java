@@ -1,8 +1,6 @@
 package org.newdawn.slick.tiled;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -13,12 +11,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.EntityResolver;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.w3c.dom.*;
+import org.xml.sax.*;
 
 /**
  * This class is intended to parse TilED maps. TilED is a generic tool for tile map editing and can
@@ -521,8 +515,17 @@ public class TiledMap {
 			 * SlickException("Only orthogonal maps supported, found: "+orient); }
 			 */
 
-			width = parseInt(docElement.getAttribute("width"));
-			height = parseInt(docElement.getAttribute("height"));
+			try {
+				width = parseInt(docElement.getAttribute("width"));
+			} catch (NumberFormatException e) {
+				width = 0;
+			}
+			try {
+				height = parseInt(docElement.getAttribute("height"));
+			} catch (NumberFormatException e) {
+				height = 0;
+			}
+
 			tileWidth = parseInt(docElement.getAttribute("tilewidth"));
 			tileHeight = parseInt(docElement.getAttribute("tileheight"));
 
@@ -855,15 +858,13 @@ public class TiledMap {
 		 */
 		public ObjectGroup(Element element) throws SlickException {
 			name = element.getAttribute("name");
-
 			try {
-				width = Integer.parseInt(element.getAttribute("width"));
+				width = parseInt(element.getAttribute("width"));
 			} catch (NumberFormatException e) {
 				width = 0;
 			}
-
 			try {
-				height = Integer.parseInt(element.getAttribute("height"));
+				height = parseInt(element.getAttribute("height"));
 			} catch (NumberFormatException e) {
 				height = 0;
 			}
@@ -932,15 +933,13 @@ public class TiledMap {
 			type = element.getAttribute("type");
 			x = Integer.parseInt(element.getAttribute("x"));
 			y = Integer.parseInt(element.getAttribute("y"));
-
 			try {
-				width = Integer.parseInt(element.getAttribute("width"));
+				width = parseInt(element.getAttribute("width"));
 			} catch (NumberFormatException e) {
 				width = 0;
 			}
-
 			try {
-				height = Integer.parseInt(element.getAttribute("height"));
+				height = parseInt(element.getAttribute("height"));
 			} catch (NumberFormatException e) {
 				height = 0;
 			}

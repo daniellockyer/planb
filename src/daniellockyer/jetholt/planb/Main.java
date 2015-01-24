@@ -10,6 +10,7 @@ public class Main extends BasicGame {
 	public static final int HEIGHT = 640;
 	private Player player;
 	private Level level;
+	private int time;
 
 	public Main(String gamename) {
 		super(gamename);
@@ -18,7 +19,6 @@ public class Main extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		Input input = gc.getInput();
-
 		level = new Level(new TiledMap("res/bank.tmx"));
 
 		player = new Player(input);
@@ -27,6 +27,7 @@ public class Main extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
+		time++;
 		level.update();
 		player.update();
 	}
@@ -41,7 +42,8 @@ public class Main extends BasicGame {
 		try {
 			AppGameContainer appgc = new AppGameContainer(new Main("PlanB"));
 			appgc.setDisplayMode(WIDTH, HEIGHT, false);
-			appgc.setShowFPS(false);
+			// appgc.setShowFPS(false);
+			appgc.setTargetFrameRate(60);
 			appgc.start();
 		} catch (SlickException ex) {
 			ex.printStackTrace();

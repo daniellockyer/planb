@@ -1,26 +1,23 @@
 package daniellockyer.jetholt.planb;
 
-import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.geom.Rectangle;
 
 public class Wall {
-	private int width, height;
-	private Vector2f position;
+	private Rectangle boundaries;
 
-	public Wall(Vector2f position) {
-		this.position = position;
-		width = 32;
-		height = 32;
+	public Wall(Rectangle rec) {
+		this.boundaries = rec;
 	}
 
-	public int getWidth() {
-		return width;
+	public float getWidth() {
+		return boundaries.getWidth();
 	}
 
-	public int getHeight() {
-		return height;
+	public float getHeight() {
+		return boundaries.getHeight();
 	}
 
-	public Vector2f getPosition() {
-		return position;
+	public Rectangle getBoundaries() {
+		return boundaries;
 	}
 }
