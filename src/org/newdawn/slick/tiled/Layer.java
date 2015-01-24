@@ -43,8 +43,7 @@ public class Layer {
 	/** The name of this layer - read from the XML */
 	public String name;
 	/**
-	 * The tile data representing this data, index 0 = tileset, index 1 = tile
-	 * id
+	 * The tile data representing this data, index 0 = tileset, index 1 = tile id
 	 */
 	public int[][][] data;
 	/** The width of this layer */
@@ -58,12 +57,9 @@ public class Layer {
 	/**
 	 * Create a new layer based on the XML definition
 	 * 
-	 * @param element
-	 *            The XML element describing the layer
-	 * @param map
-	 *            The map this layer is part of
-	 * @throws SlickException
-	 *             Indicates a failure to parse the XML layer
+	 * @param element The XML element describing the layer
+	 * @param map The map this layer is part of
+	 * @throws SlickException Indicates a failure to parse the XML layer
 	 */
 	public Layer(TiledMap map, Element element) throws SlickException {
 		this.map = map;
@@ -73,8 +69,7 @@ public class Layer {
 		data = new int[width][height][3];
 
 		// now read the layer properties
-		Element propsElement = (Element) element.getElementsByTagName(
-				"properties").item(0);
+		Element propsElement = (Element) element.getElementsByTagName("properties").item(0);
 		if (propsElement != null) {
 			NodeList properties = propsElement.getElementsByTagName("property");
 			if (properties != null) {
@@ -89,8 +84,7 @@ public class Layer {
 			}
 		}
 
-		Element dataNode = (Element) element.getElementsByTagName("data").item(
-				0);
+		Element dataNode = (Element) element.getElementsByTagName("data").item(0);
 		String encoding = dataNode.getAttribute("encoding");
 		String compression = dataNode.getAttribute("compression");
 
@@ -99,8 +93,7 @@ public class Layer {
 				Node cdata = dataNode.getFirstChild();
 				char[] enc = cdata.getNodeValue().trim().toCharArray();
 				byte[] dec = decodeBase64(enc);
-				GZIPInputStream is = new GZIPInputStream(
-						new ByteArrayInputStream(dec));
+				GZIPInputStream is = new GZIPInputStream(new ByteArrayInputStream(dec));
 
 				for (int y = 0; y < height; y++) {
 					for (int x = 0; x < width; x++) {
@@ -130,18 +123,16 @@ public class Layer {
 				throw new SlickException("Unable to decode base 64 block");
 			}
 		} else {
-			throw new SlickException("Unsupport tiled map type: " + encoding
-					+ "," + compression + " (only gzip base64 supported)");
+			throw new SlickException("Unsupport tiled map type: " + encoding + "," + compression
+					+ " (only gzip base64 supported)");
 		}
 	}
 
 	/**
 	 * Get the gloal ID of the tile at the specified location in this layer
 	 * 
-	 * @param x
-	 *            The x coorindate of the tile
-	 * @param y
-	 *            The y coorindate of the tile
+	 * @param x The x coorindate of the tile
+	 * @param y The y coorindate of the tile
 	 * @return The global ID of the tile
 	 */
 	public int getTileID(int x, int y) {
@@ -151,12 +142,9 @@ public class Layer {
 	/**
 	 * Set the global tile ID at a specified location
 	 * 
-	 * @param x
-	 *            The x location to set
-	 * @param y
-	 *            The y location to set
-	 * @param tile
-	 *            The tile value to set
+	 * @param x The x location to set
+	 * @param y The y location to set
+	 * @param tile The tile value to set
 	 */
 	public void setTileID(int x, int y, int tile) {
 		if (tile == 0) {
@@ -175,28 +163,19 @@ public class Layer {
 	/**
 	 * Render a section of this layer
 	 * 
-	 * @param x
-	 *            The x location to render at
-	 * @param y
-	 *            The y location to render at
-	 * @param sx
-	 *            The x tile location to start rendering
-	 * @param sy
-	 *            The y tile location to start rendering
-	 * @param width
-	 *            The number of tiles across to render
-	 * @param ty
-	 *            The line of tiles to render
-	 * @param lineByLine
-	 *            True if we should render line by line, i.e. giving us a chance
-	 *            to render something else between lines
-	 * @param mapTileWidth
-	 *            the tile width specified in the map file
-	 * @param mapTileHeight
-	 *            the tile height specified in the map file
+	 * @param x The x location to render at
+	 * @param y The y location to render at
+	 * @param sx The x tile location to start rendering
+	 * @param sy The y tile location to start rendering
+	 * @param width The number of tiles across to render
+	 * @param ty The line of tiles to render
+	 * @param lineByLine True if we should render line by line, i.e. giving us a chance to render
+	 *            something else between lines
+	 * @param mapTileWidth the tile width specified in the map file
+	 * @param mapTileHeight the tile height specified in the map file
 	 */
-	public void render(int x, int y, int sx, int sy, int width, int ty,
-			boolean lineByLine, int mapTileWidth, int mapTileHeight) {
+	public void render(int x, int y, int sx, int sy, int width, int ty, boolean lineByLine,
+			int mapTileWidth, int mapTileHeight) {
 		for (int tileset = 0; tileset < map.getTileSetCount(); tileset++) {
 			TileSet set = null;
 
@@ -221,9 +200,8 @@ public class Layer {
 
 					// set.tiles.renderInUse(x+(tx*set.tileWidth),
 					// y+(ty*set.tileHeight), sheetX, sheetY);
-					set.tiles.renderInUse(x + (tx * mapTileWidth), y
-							+ (ty * mapTileHeight) - tileOffsetY, sheetX,
-							sheetY);
+					set.tiles.renderInUse(x + (tx * mapTileWidth), y + (ty * mapTileHeight)
+							- tileOffsetY, sheetX, sheetY);
 				}
 			}
 
@@ -244,8 +222,7 @@ public class Layer {
 	/**
 	 * Decode a Base64 string as encoded by TilED
 	 * 
-	 * @param data
-	 *            The string of character to decode
+	 * @param data The string of character to decode
 	 * @return The byte array represented by character encoding
 	 */
 	private byte[] decodeBase64(char[] data) {
@@ -257,10 +234,8 @@ public class Layer {
 		}
 
 		int len = (temp / 4) * 3;
-		if ((temp % 4) == 3)
-			len += 2;
-		if ((temp % 4) == 2)
-			len += 1;
+		if ((temp % 4) == 3) len += 2;
+		if ((temp % 4) == 2) len += 1;
 
 		byte[] out = new byte[len];
 
@@ -282,11 +257,9 @@ public class Layer {
 			}
 		}
 
-		if (index != out.length) {
-			throw new RuntimeException(
-					"Data length appears to be wrong (wrote " + index
-							+ " should be " + out.length + ")");
-		}
+		if (index != out.length) { throw new RuntimeException(
+				"Data length appears to be wrong (wrote " + index + " should be " + out.length
+						+ ")"); }
 
 		return out;
 	}

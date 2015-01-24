@@ -1,0 +1,3 @@
+[neo]
+set 30 450
+3 move right

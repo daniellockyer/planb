@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import daniellockyer.jetholt.planb.entity.Civilian;
 import daniellockyer.jetholt.planb.entity.Entity;
 
 public class Level {
@@ -14,12 +15,11 @@ public class Level {
 	private int width, height;
 	private TiledMap map;
 	private int yOffset = -12 * TILE_SIZE;
-	private ArrayList<Integer> layersToDraw = new ArrayList<Integer>();
+	private State layersToDraw = State.OUTSIDE;
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
-	private final int OUTSIDE, WALL_OUTSIDE, FOYER, WALL_FOYER, OFFICES, WALL_OFFICES, PREVAULT,
-			WALL_PREVAULT, FLOOR;
+	private final int OUTSIDE, FOYER, OFFICES, PREVAULT, VAULT, FLOOR;
 
 	public Level(TiledMap map) {
 		this.map = map;
@@ -47,16 +47,15 @@ public class Level {
 		}
 
 		OUTSIDE = map.getLayerIndex("outside");
-		WALL_OUTSIDE = map.getLayerIndex("wall_outside");
 		FOYER = map.getLayerIndex("foyer");
-		WALL_FOYER = map.getLayerIndex("wall_foyer");
 		OFFICES = map.getLayerIndex("offices");
-		WALL_OFFICES = map.getLayerIndex("wall_offices");
 		PREVAULT = map.getLayerIndex("prevault");
-		WALL_PREVAULT = map.getLayerIndex("wall_prevault");
+		VAULT = map.getLayerIndex("vault");
 		FLOOR = map.getLayerIndex("floor");
 
-		layersToDraw.add(WALL_OUTSIDE);
+		add(new Civilian(155, 225));
+		add(new Civilian(355, 225));
+		add(new Civilian(555, 225));
 	}
 
 	public void update() {
@@ -76,13 +75,17 @@ public class Level {
 
 	public void render(Graphics g) {
 		map.render(0, yOffset, FLOOR);
+		map.render(0, yOffset, VAULT);
 		map.render(0, yOffset, PREVAULT);
 		map.render(0, yOffset, OFFICES);
 		map.render(0, yOffset, FOYER);
 
-		for (int i : layersToDraw) {
-			map.render(0, yOffset, i);
+		for (String i : layersToDraw.layers()) {
+			map.render(0, yOffset, map.getLayerIndex(i));
 		}
+
+		for (Entity e : entities)
+			e.render(g);
 
 		map.render(0, yOffset, OUTSIDE);
 
@@ -92,32 +95,17 @@ public class Level {
 					.getBoundaries().getWidth(), w.getBoundaries().getHeight());
 		}
 
-		for (Entity e : entities) {
-			e.render(g);
-		}
 	}
 
 	public void up() {
-		for (int i : layersToDraw) {
-			System.out.println("Before: " + i);
-		}
-
-		if (layersToDraw.contains(WALL_PREVAULT)) {
-			return;
-		} else if (layersToDraw.contains(WALL_OFFICES) && !layersToDraw.contains(WALL_PREVAULT)) {
-			layersToDraw.remove((Object) WALL_OFFICES);
-			layersToDraw.add(WALL_PREVAULT);
-		} else if (layersToDraw.contains(WALL_FOYER) && !layersToDraw.contains(WALL_OFFICES)) {
-			layersToDraw.remove((Object) WALL_FOYER);
-			layersToDraw.add(WALL_OFFICES);
-		} else if (layersToDraw.contains(WALL_OUTSIDE) && !layersToDraw.contains(WALL_FOYER)) {
-			layersToDraw.remove((Object) WALL_OUTSIDE);
-			layersToDraw.add(WALL_FOYER);
-		}
-		Collections.sort(layersToDraw);
-
-		for (int i : layersToDraw) {
-			System.out.println("After: " + i);
+		if (layersToDraw == State.OUTSIDE) {
+			layersToDraw = State.FOYER;
+		} else if (layersToDraw == State.FOYER) {
+			layersToDraw = State.OFFICES;
+		} else if (layersToDraw == State.OFFICES) {
+			layersToDraw = State.PREVAULT;
+		} else if (layersToDraw == State.PREVAULT) {
+			layersToDraw = State.VAULT;
 		}
 	}
 
@@ -182,6 +170,19 @@ public class Level {
 					&& y1 + e.getHeight() >= y0) { return w.getName(); }
 		}
 		return "";
+	}
+
+	public Wall getWallIntersect(Entity e) {
+		for (int i = 0; i < walls.size(); i++) {
+			Wall w = walls.get(i);
+			float x0 = w.getBoundaries().getX();
+			float y0 = w.getBoundaries().getY() + yOffset;
+			float x1 = e.getPosition().x;
+			float y1 = e.getPosition().y;
+			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
+					&& y1 + e.getHeight() >= y0) { return w; }
+		}
+		return null;
 	}
 
 	public boolean wall(Entity e, float xa, float ya) {

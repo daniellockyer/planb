@@ -1,5 +1,7 @@
 package daniellockyer.jetholt.planb.entity;
 
+import java.util.Random;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
@@ -11,6 +13,7 @@ public abstract class Entity {
 	protected Vector2f position;
 	protected float width, height;
 	public boolean removed = false;
+	protected Random r = new Random();
 
 	protected Entity() {
 		position = new Vector2f(0, 0);

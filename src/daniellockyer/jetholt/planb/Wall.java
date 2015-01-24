@@ -4,11 +4,19 @@ import org.newdawn.slick.geom.Rectangle;
 
 public class Wall {
 	private Rectangle boundaries;
-	private boolean walk = false;
+	private boolean walk = false, been = false;
 	private String name;
 
 	public Wall(Rectangle rec) {
 		this.boundaries = rec;
+	}
+
+	public boolean been() {
+		return this.been;
+	}
+
+	public void done() {
+		been = true;
 	}
 
 	public void setWalkable(boolean walk) {
@@ -32,7 +40,7 @@ public class Wall {
 	}
 
 	public void setName(String a) {
-		this.name =a;
+		this.name = a;
 	}
 
 	public String getName() {

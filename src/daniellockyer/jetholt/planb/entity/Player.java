@@ -29,19 +29,19 @@ public class Player extends Entity {
 	public void update() {
 		float dx = 0, dy = 0;
 
-		if (input.isKeyDown(Input.KEY_W)||input.isKeyDown(Input.KEY_UP)) {
+		if (input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_UP)) {
 			dy--;
 		}
 
-		if (input.isKeyDown(Input.KEY_A)||input.isKeyDown(Input.KEY_LEFT)) {
+		if (input.isKeyDown(Input.KEY_A) || input.isKeyDown(Input.KEY_LEFT)) {
 			dx--;
 		}
 
-		if (input.isKeyDown(Input.KEY_S)||input.isKeyDown(Input.KEY_DOWN)) {
+		if (input.isKeyDown(Input.KEY_S) || input.isKeyDown(Input.KEY_DOWN)) {
 			dy++;
 		}
 
-		if (input.isKeyDown(Input.KEY_D)||input.isKeyDown(Input.KEY_RIGHT)) {
+		if (input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_RIGHT)) {
 			dx++;
 		}
 
@@ -67,10 +67,16 @@ public class Player extends Entity {
 			if (name != null) {
 				switch (name) {
 				case "collision_door_main":
-					level.up();
+					if (!level.getWallIntersect(this).been()) {
+						level.getWallIntersect(this).done();
+						level.up();
+					}
 					break;
 				case "collision_door_staff":
-					level.up();
+					if (!level.getWallIntersect(this).been()) {
+						level.getWallIntersect(this).done();
+						level.up();
+					}
 					break;
 				default:
 					break;
