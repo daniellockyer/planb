@@ -29,25 +29,30 @@ public class Player extends Entity {
 	public void update() {
 		float dx = 0, dy = 0;
 
-		if (input.isKeyDown(Input.KEY_W)) {
+		if (input.isKeyDown(Input.KEY_W)||input.isKeyDown(Input.KEY_UP)) {
 			dy--;
 		}
 
-		if (input.isKeyDown(Input.KEY_A)) {
+		if (input.isKeyDown(Input.KEY_A)||input.isKeyDown(Input.KEY_LEFT)) {
 			dx--;
 		}
 
-		if (input.isKeyDown(Input.KEY_S)) {
+		if (input.isKeyDown(Input.KEY_S)||input.isKeyDown(Input.KEY_DOWN)) {
 			dy++;
 		}
 
-		if (input.isKeyDown(Input.KEY_D)) {
+		if (input.isKeyDown(Input.KEY_D)||input.isKeyDown(Input.KEY_RIGHT)) {
 			dx++;
 		}
 
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			level.add(new Bullet(position.copy(), angle));
 		}
+
+		if (dy == -1) angle = 0;
+		if (dx == 1) angle = 90;
+		if (dy == 1) angle = 180;
+		if (dx == -1) angle = 270;
 
 		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1) {
 			if (!level.wall(this, dx * slowdown, 0)) {
@@ -71,16 +76,6 @@ public class Player extends Entity {
 					break;
 				}
 			}
-		}
-
-		/* level */
-
-		if (input.isKeyPressed(Input.KEY_UP)) {
-			level.moveOffset(1);
-		}
-
-		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			level.moveOffset(-1);
 		}
 
 		if (input.isKeyPressed(Input.KEY_O)) {

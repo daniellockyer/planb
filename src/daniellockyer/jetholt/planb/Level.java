@@ -98,19 +98,27 @@ public class Level {
 	}
 
 	public void up() {
+		for (int i : layersToDraw) {
+			System.out.println("Before: " + i);
+		}
+
 		if (layersToDraw.contains(WALL_PREVAULT)) {
 			return;
-		} else if (layersToDraw.contains(WALL_OFFICES)) {
+		} else if (layersToDraw.contains(WALL_OFFICES) && !layersToDraw.contains(WALL_PREVAULT)) {
 			layersToDraw.remove((Object) WALL_OFFICES);
 			layersToDraw.add(WALL_PREVAULT);
-		} else if (layersToDraw.contains(WALL_FOYER)) {
+		} else if (layersToDraw.contains(WALL_FOYER) && !layersToDraw.contains(WALL_OFFICES)) {
 			layersToDraw.remove((Object) WALL_FOYER);
 			layersToDraw.add(WALL_OFFICES);
-		} else if (layersToDraw.contains(WALL_OUTSIDE)) {
+		} else if (layersToDraw.contains(WALL_OUTSIDE) && !layersToDraw.contains(WALL_FOYER)) {
 			layersToDraw.remove((Object) WALL_OUTSIDE);
 			layersToDraw.add(WALL_FOYER);
 		}
 		Collections.sort(layersToDraw);
+
+		for (int i : layersToDraw) {
+			System.out.println("After: " + i);
+		}
 	}
 
 	public void add(Entity e) {

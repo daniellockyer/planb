@@ -8,11 +8,12 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class Bullet extends Entity {
 	private Vector2f direction;
-	private float slowdown = 0.5f;
+	private float slowdown = 0.75f;
 
 	public Bullet(Vector2f position, double angle) {
 		this.position = position;
-		this.direction = new Vector2f((float) Math.sin(angle), (float) Math.cos(angle));
+		angle = Math.toRadians(angle - 90);
+		this.direction = new Vector2f((float) Math.cos(angle), (float) Math.sin(angle));
 	}
 
 	@Override
