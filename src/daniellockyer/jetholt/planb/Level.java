@@ -1,11 +1,14 @@
 package daniellockyer.jetholt.planb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import daniellockyer.jetholt.planb.entity.Bullet;
 import daniellockyer.jetholt.planb.entity.Entity;
 
 public class Level {
@@ -27,6 +30,10 @@ public class Level {
 	}
 
 	public void update() {
+		for (int i = 0; i < entities.size(); i++) {
+			entities.get(i).update();
+			if (entities.get(i).removed) entities.remove(i);
+		}
 	}
 
 	public void moveOffset(int x, int y) {
@@ -53,6 +60,69 @@ public class Level {
 			e1.printStackTrace();
 		}
 
+	}
+
+	public boolean wall(Vector2f pos, Entity e, float xa, float ya) {
+		for (int i = 0; i < walls.size(); i++) {
+			Wall w = walls.get(i);
+			float x0 = w.getPosition().x;
+			float y0 = w.getPosition().y;
+			float x1 = pos.x + xa;
+			float y1 = pos.y + ya;
+			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()) {
+				if (y1 <= y0 + w.getHeight() - 8 && y1 + e.getHeight() >= y0 - 12) { return true; }
+			}
+		}
+		return false;
+	}
+
+	public List<Entity> getEntities(Vector2f from, Entity ignore, int radius) {
+		List<Entity> result = new ArrayList<Entity>();
+		for (int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			if (e == ignore) continue;
+			double dx = e.getPosition().x - from.x;
+			double dy = e.getPosition().y - from.y;
+			if (Math.sqrt(dx * dx + dy * dy) > radius) continue;
+			result.add(e);
+		}
+		return result;
+	}
+
+	public List<Entity> getEntities(Entity from, int radius) {
+		List<Entity> result = new ArrayList<Entity>();
+		for (int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			if (e == from) continue;
+			double dx = e.getPosition().x - from.getPosition().x;
+			double dy = e.getPosition().y - from.getPosition().y;
+			if (Math.sqrt(dx * dx + dy * dy) > radius) continue;
+			result.add(e);
+		}
+		return result;
+	}
+
+	public boolean wall(Entity e, int xa, int ya) {
+		for (int i = 0; i < walls.size(); i++) {
+			Wall w = walls.get(i);
+			float x0 = w.getPosition().x;
+			float y0 = w.getPosition().y;
+			float x1 = e.getPosition().x + xa;
+			float y1 = e.getPosition().y + ya;
+			int xOffset0 = 0;
+			int xOffset1 = 0;
+			int yOffset0 = 0;
+			int yOffset1 = 0;
+			if (e instanceof Bullet) {
+				xOffset0 = 0;
+				xOffset1 = -8;
+				yOffset0 = 8;
+			}
+			if (x1 + e.getWidth() + xOffset1 >= x0 && x1 <= x0 + w.getWidth() + xOffset0) {
+				if (y1 <= y0 + w.getHeight() + yOffset1 && y1 + e.getHeight() >= y0 + yOffset0) { return true; }
+			}
+		}
+		return false;
 	}
 
 	public void up() {
