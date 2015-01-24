@@ -1,11 +1,13 @@
-package daniellockyer.jetholt.planb;
+package daniellockyer.jetholt.planb.entity;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import daniellockyer.jetholt.planb.Level;
+
 public abstract class Entity {
-	private Level level;
+	protected Level level;
 	protected Vector2f position;
 	protected float width, height;
 	public boolean removed = false;
@@ -14,11 +16,11 @@ public abstract class Entity {
 		position = new Vector2f(0, 0);
 	}
 
-	public abstract void update();
-
 	public void init(Level level) throws SlickException {
 		this.level = level;
 	}
+
+	public abstract void update();
 
 	public abstract void render(Graphics g);
 

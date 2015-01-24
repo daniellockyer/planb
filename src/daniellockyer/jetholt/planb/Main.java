@@ -3,6 +3,8 @@ package daniellockyer.jetholt.planb;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
+import daniellockyer.jetholt.planb.entity.Player;
+
 public class Main extends BasicGame {
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 640;
