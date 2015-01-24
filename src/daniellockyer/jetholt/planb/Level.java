@@ -1,6 +1,7 @@
 package daniellockyer.jetholt.planb;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -53,9 +54,13 @@ public class Level {
 		VAULT = map.getLayerIndex("vault");
 		FLOOR = map.getLayerIndex("floor");
 
-		add(new Civilian(155, 225));
-		add(new Civilian(355, 225));
-		add(new Civilian(555, 225));
+		for (Entity e : new ConfigFileReader().read()) {
+			add(e);
+		}
+
+		/*
+		 * add(new Civilian(155, 225)); add(new Civilian(355, 225)); add(new Civilian(555, 225));
+		 */
 	}
 
 	public void update() {

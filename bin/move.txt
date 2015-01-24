@@ -1,3 +1,11 @@
 [neo]
-set 30 450
-3 move right
+1 set 30 450
+180 move 1 0
+
+[jet]
+1 set 75 450
+180 move 1 0
+
+[bill]
+1 set 140 450
+180 move 1 0

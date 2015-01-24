@@ -31,9 +31,9 @@
    H4sIAAAAAAAAC+2SwQmAQAwEU6HgdaIdaAdnB1qpl98RFyGEkM8OhIH9zCcipJql6NhnP6O/jVvHtcm67cZZ/UO+6HYaZ/U76Ot2GWf1b9DX7THO6nup7qPfjNgL+s2IvaDfjNgL+s2ICSGEEPLPC4sV1zcAEAAA
   </data>
  </layer>
- <layer name="offices" width="32" height="32" visible="0">
+ <layer name="offices" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAC+2SbQqAIBBEt++sDtcR9gieoLM3QcEWEf6wLJoHD0TFwWFFCCGE/AmfOF+Z/zgNbKGDU4J8i5r1EPHd0Lm2+X3EfL046+S8/5j5oeiL8pdeCljCCmYwP+zVsp/fkDsbbtX2P97yK0II+Q4z1gR0lwAQAAA=
   </data>
  </layer>
  <layer name="wall_foyer" width="32" height="32" visible="0">
