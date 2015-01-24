@@ -7,10 +7,9 @@ import daniellockyer.jetholt.planb.Level;
 import daniellockyer.jetholt.planb.Main;
 
 public class Player extends Entity {
-	private Image image;
+	private Image image, secondary;
 	private Input input;
 	private double angle = 90;
-
 	private float slowdown = 3.0f;
 	public int health = 10;
 
@@ -25,7 +24,8 @@ public class Player extends Entity {
 	@Override
 	public void init(Main main, Level level) throws SlickException {
 		super.init(main, level);
-		image = new Image("player2.png");
+		drawable = image = new Image("player2.png");
+		secondary = new Image("player.png");
 	}
 
 	@Override
@@ -61,12 +61,23 @@ public class Player extends Entity {
 		if (dy == 1) angle = 180;
 		if (dx == -1) angle = 270;
 
-		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1) {
+		if (dx != 0 || dy != 0) {
+			moveCounter++;
+		}
+
+		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1
+				&& position.y + dy < Main.HEIGHT) {
+
 			if (!level.wall(this, dx * slowdown, 0)) {
 				move(dx * slowdown, 0);
 			}
-			if (!level.wall(this, 0, dy * slowdown)) {
-				move(0, dy * slowdown);
+
+			if (position.y + dy < 200) {
+				main.yOffset -= slowdown * dy;
+			} else {
+				if (!level.wall(this, 0, dy * slowdown)) {
+					move(0, dy * slowdown);
+				}
 			}
 
 			String name = level.wallName(this);
@@ -103,6 +114,11 @@ public class Player extends Entity {
 			}
 		}
 
+		if (moveCounter == MAX_MOVE) {
+			drawable = (drawable == image ? secondary : image);
+			moveCounter = 0;
+		}
+
 		if (input.isKeyPressed(Input.KEY_UP)) {
 			level.translate(-1);
 		}
@@ -114,35 +130,5 @@ public class Player extends Entity {
 		if (input.isKeyPressed(Input.KEY_O)) {
 			level.up();
 		}
-	}
-
-	public void render(int yOffset, Graphics g) {
-		g.drawImage(image, getX(), getY());
-		g.setColor(Color.green);
-		g.drawString(angle + "", (float) (position.x + 5), (float) (position.y + 5));
-	}
-
-	@Override
-	public void render(Graphics g) {
-		switch ((int) angle) {
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-		case 3:
-			g.drawImage(image, getX(), getY());
-			break;
-		case 4:
-			break;
-		case 5:
-		case 6:
-			g.drawImage(image.getFlippedCopy(false, true), getX(), getY());
-			break;
-		case 7:
-			break;
-		}
-		g.setColor(Color.green);
-		g.drawString(angle + "", (float) (position.x + 5), (float) (position.y + 5));
 	}
 }

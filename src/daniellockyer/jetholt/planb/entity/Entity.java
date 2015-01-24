@@ -2,8 +2,7 @@ package daniellockyer.jetholt.planb.entity;
 
 import java.util.Random;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Vector2f;
 
 import daniellockyer.jetholt.planb.Level;
@@ -15,7 +14,10 @@ public abstract class Entity {
 	protected float width, height;
 	public boolean removed = false;
 	protected int direction;
+	protected Image drawable;
 	protected Main main;
+	protected final int MAX_MOVE = 10;
+	protected int moveCounter = 0;
 	protected Random r = new Random();
 
 	protected Entity() {
@@ -29,7 +31,22 @@ public abstract class Entity {
 
 	public abstract void update();
 
-	public abstract void render(Graphics g);
+	public void render(Graphics g) {
+		switch (direction) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			g.drawImage(drawable, getX(), getY());
+			break;
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+			g.drawImage(drawable.getFlippedCopy(true, false), getX(), getY());
+			break;
+		}
+	}
 
 	protected void setSize(float i, float j) {
 		width = i;

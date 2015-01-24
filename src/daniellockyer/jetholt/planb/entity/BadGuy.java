@@ -40,8 +40,6 @@ public class BadGuy extends Entity {
 			walk = new Image("trex.png");
 			break;
 		}
-
-		//
 	}
 
 	@Override
@@ -56,12 +54,18 @@ public class BadGuy extends Entity {
 				break;
 			case "move":
 				move(Float.parseFloat(c.getArguments()[0]), Float.parseFloat(c.getArguments()[1]));
+				moveCounter++;
 			default:
 				break;
 			}
 
 			if (c.getTime() == 0) commands.pop();
 			c.decr();
+		}
+
+		if (moveCounter == MAX_MOVE) {
+			drawable = (drawable == stop ? walk : stop);
+			moveCounter = 0;
 		}
 	}
 
@@ -74,13 +78,13 @@ public class BadGuy extends Entity {
 			break;
 		case 2:
 		case 3:
-			g.drawImage(stop, getX(), getY() + main.yOffset);
+			g.drawImage(drawable, getX(), getY() + main.yOffset);
 			break;
 		case 4:
 			break;
 		case 5:
 		case 6:
-			g.drawImage(stop.getFlippedCopy(false, true), getX(), getY() + main.yOffset);
+			g.drawImage(drawable.getFlippedCopy(false, true), getX(), getY() + main.yOffset);
 			break;
 		case 7:
 			break;

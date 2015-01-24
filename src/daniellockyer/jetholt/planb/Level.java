@@ -12,7 +12,6 @@ import daniellockyer.jetholt.planb.entity.*;
 
 public class Level {
 	public static final int TILE_SIZE = 32;
-	private int width, height;
 	private TiledMap map;
 	private Main main;
 	private State layersToDraw = State.OUTSIDE;
@@ -24,8 +23,6 @@ public class Level {
 	public Level(Main main, TiledMap map) {
 		this.main = main;
 		this.map = map;
-		this.width = map.getWidth();
-		this.height = map.getHeight();
 
 		int objectGroupCount = map.getObjectGroupCount();
 		for (int gi = 0; gi < objectGroupCount; gi++) {
@@ -203,7 +200,8 @@ public class Level {
 			if (w.isWalkable()) return false;
 			if (e instanceof Player) {
 				if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()
-						&& y1 <= y0 + w.getHeight() / 3 && y1 + e.getHeight() / 3 >= y0) { return true; }
+						&& y1 <= (y0 + w.getHeight()) - w.getHeight() / 3
+						&& y1 + e.getHeight() / 3 >= y0) { return true; }
 			} else if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()
 					&& y1 <= y0 + w.getHeight() && y1 + e.getHeight() >= y0) { return true; }
 		}

@@ -7,11 +7,10 @@ import daniellockyer.jetholt.planb.entity.Player;
 
 public class Main extends BasicGame {
 	public static final int WIDTH = 1024;
-	public static final int HEIGHT = 640;
+	public static final int HEIGHT = 680;
 	public Player player;
 	private GUI gui;
 	private Level level;
-	private int time;
 	public int yOffset = -12 * Level.TILE_SIZE;
 
 	public Main(String gamename) {
@@ -20,17 +19,15 @@ public class Main extends BasicGame {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		Input input = gc.getInput();
 		level = new Level(this, new TiledMap("res/bank.tmx"));
 		gui = new GUI(this);
-		gui.setMessage("Hello world! This is a text demo....");
-		player = new Player(input);
+		gui.setMessage("Neo: Hello world! This is a text demo....");
+		player = new Player(gc.getInput());
 		player.init(this, level);
 	}
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
-		time++;
 		level.update();
 		player.update();
 	}
@@ -39,7 +36,7 @@ public class Main extends BasicGame {
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		level.render(yOffset, g);
 		gui.render(g);
-		player.render(yOffset, g);
+		player.render(g);
 	}
 
 	public static void main(String[] args) {
