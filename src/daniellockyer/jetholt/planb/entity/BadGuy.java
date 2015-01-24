@@ -1,27 +1,46 @@
-package daniellockyer.jetholt.planb;
+package daniellockyer.jetholt.planb.entity;
 
 import java.util.Stack;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Vector2f;
 
+import daniellockyer.jetholt.planb.Level;
 import daniellockyer.jetholt.planb.commands.Command;
-import daniellockyer.jetholt.planb.entity.Entity;
 
 public class BadGuy extends Entity {
 	private String name;
-	private Image image;
 	private Stack<Command> commands = new Stack<Command>();
+	private Image stop, walk;
+	private int direction = 2;
 
 	public BadGuy(String name, Stack<Command> commands) {
+		super();
 		this.name = name;
 		this.commands = commands;
+		setSize(48, 96);
 	}
 
 	@Override
 	public void init(Level level) throws SlickException {
 		super.init(level);
-		image = new Image("badguy.png");
+
+		switch (name) {
+		case "neo":
+			stop = new Image("Neo.png");
+			walk = new Image("Neo2.png");
+			break;
+		case "jet":
+			stop = new Image("Jet.png");
+			walk = new Image("Jet2.png");
+			break;
+		case "trex":
+			stop = new Image("trex2.png");
+			walk = new Image("trex.png");
+			break;
+		}
+
+		//
 	}
 
 	@Override
@@ -35,8 +54,7 @@ public class BadGuy extends Entity {
 						Float.parseFloat(c.getArguments()[1]));
 				break;
 			case "move":
-				this.position.add(new Vector2f(Float.parseFloat(c.getArguments()[0]), Float
-						.parseFloat(c.getArguments()[1])));
+				move(Float.parseFloat(c.getArguments()[0]), Float.parseFloat(c.getArguments()[1]));
 			default:
 				break;
 			}
@@ -48,9 +66,25 @@ public class BadGuy extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(image, getX(), getY());
-		g.setColor(Color.green);
-		g.drawString(name, (float) (position.x + 5), (float) (position.y + 5));
+		switch (direction) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+		case 3:
+			g.drawImage(stop, getX(), getY());
+			break;
+		case 4:
+			break;
+		case 5:
+		case 6:
+			g.drawImage(stop.getFlippedCopy(false, true), getX(), getY());
+			break;
+		case 7:
+			break;
+		}
+		// g.drawImage(stop, getX(), getY());
 	}
 
 }

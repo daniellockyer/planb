@@ -1,6 +1,7 @@
 package daniellockyer.jetholt.planb.entity;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Vector2f;
 
 import daniellockyer.jetholt.planb.Level;
 import daniellockyer.jetholt.planb.Main;
@@ -9,12 +10,14 @@ public class Player extends Entity {
 	private Image image;
 	private Input input;
 	private double angle = 90;
+
 	private float slowdown = 3.0f;
+	public int health = 10;
 
 	public Player(Input input) {
 		this.input = input;
 		this.position.x = 30;
-		this.position.y = 450;
+		this.position.y = 475;
 
 		setSize(32, 32);
 	}
@@ -22,12 +25,16 @@ public class Player extends Entity {
 	@Override
 	public void init(Level level) throws SlickException {
 		super.init(level);
-		image = new Image("player.png");
+		image = new Image("player2.png");
 	}
 
 	@Override
 	public void update() {
 		float dx = 0, dy = 0;
+
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+			System.exit(0);
+		}
 
 		if (input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_UP)) {
 			dy--;
@@ -46,7 +53,7 @@ public class Player extends Entity {
 		}
 
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			level.add(new Bullet(position.copy(), angle));
+			level.add(new Bullet(position.copy().add(new Vector2f(16, 48)), angle));
 		}
 
 		if (dy == -1) angle = 0;
@@ -84,14 +91,45 @@ public class Player extends Entity {
 			}
 		}
 
+		if (input.isKeyPressed(Input.KEY_UP)) {
+			level.translate(1);
+		}
+
+		if (input.isKeyPressed(Input.KEY_DOWN)) {
+			level.translate(-1);
+		}
+
 		if (input.isKeyPressed(Input.KEY_O)) {
 			level.up();
 		}
 	}
 
+	public void render(int yOffset, Graphics g) {
+		g.drawImage(image, getX(), getY());
+		g.setColor(Color.green);
+		g.drawString(angle + "", (float) (position.x + 5), (float) (position.y + 5));
+	}
+
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(image, getX(), getY());
+		switch ((int) angle) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+		case 3:
+			g.drawImage(image, getX(), getY());
+			break;
+		case 4:
+			break;
+		case 5:
+		case 6:
+			g.drawImage(image.getFlippedCopy(false, true), getX(), getY());
+			break;
+		case 7:
+			break;
+		}
 		g.setColor(Color.green);
 		g.drawString(angle + "", (float) (position.x + 5), (float) (position.y + 5));
 	}

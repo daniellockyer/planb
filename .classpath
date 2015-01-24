@@ -8,5 +8,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="PlanB/libs/slick"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/slick/lib/lwjgl_util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

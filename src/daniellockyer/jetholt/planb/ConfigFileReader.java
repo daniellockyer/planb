@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import daniellockyer.jetholt.planb.commands.Command;
+import daniellockyer.jetholt.planb.entity.BadGuy;
 
 public class ConfigFileReader {
 	public ArrayList<BadGuy> read() {
@@ -29,7 +30,12 @@ public class ConfigFileReader {
 								parts.length));
 						commands.add(c);
 					}
-					temp.add(new BadGuy(name, commands));
+
+					Stack<Command> reversedStack = new Stack<Command>();
+					while (!commands.empty()) {
+						reversedStack.push(commands.pop());
+					}
+					temp.add(new BadGuy(name, reversedStack));
 				}
 			}
 

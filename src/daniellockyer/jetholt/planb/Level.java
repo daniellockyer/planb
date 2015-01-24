@@ -8,21 +8,21 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
-import daniellockyer.jetholt.planb.entity.Civilian;
-import daniellockyer.jetholt.planb.entity.Entity;
+import daniellockyer.jetholt.planb.entity.*;
 
 public class Level {
-	private final int TILE_SIZE = 32;
+	public static final int TILE_SIZE = 32;
 	private int width, height;
 	private TiledMap map;
-	private int yOffset = -12 * TILE_SIZE;
+	private Main main;
 	private State layersToDraw = State.OUTSIDE;
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	private final int OUTSIDE, FOYER, OFFICES, PREVAULT, VAULT, FLOOR;
 
-	public Level(TiledMap map) {
+	public Level(Main main, TiledMap map) {
+		this.main = main;
 		this.map = map;
 		this.width = map.getWidth();
 		this.height = map.getHeight();
@@ -74,11 +74,11 @@ public class Level {
 		entities.removeAll(toremove);
 	}
 
-	public void moveOffset(int y) {
-		yOffset += y * TILE_SIZE;
+	public void translate(int amount) {
+		main.yOffset += -12 * amount;
 	}
 
-	public void render(Graphics g) {
+	public void render(int yOffset, Graphics g) {
 		map.render(0, yOffset, FLOOR);
 		map.render(0, yOffset, VAULT);
 		map.render(0, yOffset, PREVAULT);
@@ -94,10 +94,12 @@ public class Level {
 
 		map.render(0, yOffset, OUTSIDE);
 
-		for (Wall w : walls) {
-			g.setColor(Color.green);
-			g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + yOffset, w
-					.getBoundaries().getWidth(), w.getBoundaries().getHeight());
+		if (false) {
+			for (Wall w : walls) {
+				g.setColor(Color.green);
+				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + yOffset, w
+						.getBoundaries().getWidth(), w.getBoundaries().getHeight());
+			}
 		}
 
 	}
@@ -128,7 +130,7 @@ public class Level {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
 			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + yOffset;
+			float y0 = w.getBoundaries().getY() + main.yOffset;
 			float x1 = pos.x + xa;
 			float y1 = pos.y + ya;
 			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()) {
@@ -168,7 +170,7 @@ public class Level {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
 			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + yOffset;
+			float y0 = w.getBoundaries().getY() + main.yOffset;
 			float x1 = e.getPosition().x;
 			float y1 = e.getPosition().y;
 			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
@@ -181,7 +183,7 @@ public class Level {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
 			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + yOffset;
+			float y0 = w.getBoundaries().getY() + main.yOffset;
 			float x1 = e.getPosition().x;
 			float y1 = e.getPosition().y;
 			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
@@ -194,14 +196,16 @@ public class Level {
 		for (int i = 0; i < walls.size(); i++) {
 			Wall w = walls.get(i);
 			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + yOffset;
+			float y0 = w.getBoundaries().getY() + main.yOffset;
 			float x1 = e.getPosition().x + xa;
 			float y1 = e.getPosition().y + ya;
 			if (w.isWalkable()) return false;
-			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
-					&& y1 + e.getHeight() >= y0) { return true; }
+			if (e instanceof Player) {
+				if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()
+						&& y1 <= y0 + w.getHeight() / 3 && y1 + e.getHeight() / 3 >= y0) { return true; }
+			} else if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()
+					&& y1 <= y0 + w.getHeight() && y1 + e.getHeight() >= y0) { return true; }
 		}
 		return false;
 	}
-
 }

@@ -13,7 +13,6 @@ public class Civilian extends Entity {
 	public Civilian(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
-
 		setSize(32, 32);
 	}
 

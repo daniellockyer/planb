@@ -13,6 +13,7 @@ public abstract class Entity {
 	protected Vector2f position;
 	protected float width, height;
 	public boolean removed = false;
+	protected int direction;
 	protected Random r = new Random();
 
 	protected Entity() {
@@ -52,6 +53,15 @@ public abstract class Entity {
 	public void move(float xa, float ya) {
 		position.x += xa;
 		position.y += ya;
+
+		if (xa == 0 && ya < 0) direction = 0;
+		else if (xa > 0 && ya < 0) direction = 1;
+		else if (xa > 0 && ya == 0) direction = 2;
+		else if (xa > 0 && ya > 0) direction = 3;
+		else if (xa == 0 && ya > 0) direction = 4;
+		else if (xa < 0 && ya > 0) direction = 5;
+		else if (xa < 0 && ya == 0) direction = 6;
+		else if (xa < 0 && ya < 0) direction = 7;
 	}
 
 	public void remove() {
