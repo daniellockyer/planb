@@ -1,6 +1,7 @@
+package daniellockyer.jetholt.planb;
 
-public class Objective implements Comparable<Objective>{
-	private int ID;
+public class Objective implements Comparable<Objective> {
+	private int id;
 	private int xpos;
 	private int ypos;
 	private int width;
@@ -9,18 +10,22 @@ public class Objective implements Comparable<Objective>{
 	private int timesec;
 	private boolean iscomplete;
 	private boolean isactive;
-	
-	public Objective(int ID,int xpos,int ypos,int width,int height,String message,int timesec){
-		this.ID = ID;
+
+	public Objective(int id, int xpos, int ypos, int width, int height, String message, int timesec) {
+		this.id = id;
 		this.xpos = xpos;
 		this.ypos = ypos;
 		this.width = width;
 		this.height = height;
 		this.message = message;
 		this.timesec = timesec;
-		if(ID == 1){
+		if (id == 1) {
 			isactive = true;
 		}
+	}
+
+	public boolean isActive() {
+		return isactive;
 	}
 
 	public boolean isIscomplete() {
@@ -32,14 +37,14 @@ public class Objective implements Comparable<Objective>{
 	}
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 
-	public int getXpos() {
+	public int getX() {
 		return xpos;
 	}
 
-	public int getYpos() {
+	public int getY() {
 		return ypos;
 	}
 
@@ -59,12 +64,9 @@ public class Objective implements Comparable<Objective>{
 		return timesec;
 	}
 
+	@Override
 	public int compareTo(Objective object) {
-		int otherID = object.getID();
-		if(otherID > ID){
-			return -1;
-		}
-		return 1;
+		return id - object.getID();
 	}
 
 }

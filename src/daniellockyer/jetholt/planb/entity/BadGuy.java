@@ -47,8 +47,7 @@ public class BadGuy extends Entity {
 
 			switch (c.getCommand()) {
 			case "set":
-				this.position = new Vector2f(Float.parseFloat(c.getArguments()[0]),
-						Float.parseFloat(c.getArguments()[1]));
+				this.position = new Vector2f(Float.parseFloat(c.getArguments()[0]), Float.parseFloat(c.getArguments()[1]));
 				break;
 			case "move":
 				move(Float.parseFloat(c.getArguments()[0]), Float.parseFloat(c.getArguments()[1]));

@@ -1,6 +1,7 @@
 package daniellockyer.jetholt.planb.entity;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import daniellockyer.jetholt.planb.*;
@@ -9,7 +10,11 @@ public class Player extends Entity {
 	private Input input;
 	private double angle = 90;
 	private float slowdown = 3.0f;
-	private int ticker;
+	private int ticker, timer;
+	private boolean inArea = false;
+	public int objective = 1;
+
+	// private float progress;
 
 	public Player(Input input) {
 		this.input = input;
@@ -77,11 +82,31 @@ public class Player extends Entity {
 			try {
 				Wall w = level.getWallIntersect(this);
 				if (w.isWalkable() && !w.been()) {
-					w.done();
-					level.up();
+					level.up(w);
 				}
 			} catch (NullPointerException e) {
 			}
+		}
+
+		Objective o = level.objectiveList.get(0);
+		Rectangle r = new Rectangle(o.getX(), o.getY() + main.yOffset, o.getWidth(), o.getHeight());
+
+		if (new Rectangle(getPosition().x, getPosition().y + getHeight() - (getHeight() / 6), getWidth(), getHeight() / 6).intersects(r)) {
+			inArea = true;
+			timer++;
+
+			if (timer == o.getTimesec() * 60) {
+				timer = 0;
+				objective++;
+				level.objectiveList.remove(0);
+				main.gui.setMessage(level.objectiveList.get(0).getMessage());
+			}
+
+			// progress = (float) (timer / level.objectiveList.get(0).getTimesec()) * getWidth() /
+			// 100;
+		} else {
+			inArea = false;
+			timer = 0;
 		}
 
 		if (moveCounter == MAX_MOVE) {
@@ -95,6 +120,21 @@ public class Player extends Entity {
 
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
 			level.translate(1);
+		}
+	}
+
+	@Override
+	public void render(Graphics g) {
+		super.render(g);
+
+		/*
+		 * if (inArea) { g.setColor(Color.gray); g.drawRect(getX(), getY() - 20, getWidth(), 15);
+		 * g.setColor(Color.green); g.fillRect(getX() + 1, getY() - 19, progress, 13); }
+		 */
+
+		if (Main.DEBUG) {
+			g.setColor(Color.pink);
+			g.draw(new Rectangle(getPosition().x, getPosition().y + getHeight() - (getHeight() / 6), getWidth(), getHeight() / 6));
 		}
 	}
 }

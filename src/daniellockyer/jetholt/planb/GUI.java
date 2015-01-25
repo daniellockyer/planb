@@ -31,6 +31,9 @@ public class GUI {
 		g.setColor(Color.black);
 		g.drawRect(Main.WIDTH - 650, Main.HEIGHT - 38, 36, 36);
 		g.drawImage(face, Main.WIDTH - 648, Main.HEIGHT - 36);
+
+		g.setColor(Color.white);
+		g.drawString("Objective: " + main.player.objective, Main.WIDTH - 130, Main.HEIGHT - 30);
 	}
 
 	public void setMessage(String message) {

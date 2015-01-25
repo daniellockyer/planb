@@ -1,6 +1,7 @@
 package daniellockyer.jetholt.planb;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Point;
@@ -18,34 +19,48 @@ public class Level implements TileBasedMap {
 	private State layersToDraw = State.OUTSIDE;
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
+	public ArrayList<Objective> objectiveList = new ArrayList<Objective>();
 	private final int OUTSIDE, FOYER, OFFICES, PREVAULT, VAULT, FLOOR;
 
 	public Level(Main main, TiledMap map) {
 		this.main = main;
 		this.map = map;
 
-		int objectGroupCount = map.getObjectGroupCount();
+		int collisionsId = 0;
 
-		for (int gi = 0; gi < 1; gi++) {
-			int objectCount = map.getObjectCount(gi);
+		for (int oi = 0; oi < map.getObjectCount(collisionsId); oi++) {
+			int x = map.getObjectX(collisionsId, oi);
+			int y = map.getObjectY(collisionsId, oi);
+			int width = map.getObjectWidth(collisionsId, oi);
+			int height = map.getObjectHeight(collisionsId, oi);
+			String a = map.getObjectName(collisionsId, oi);
 
-			for (int oi = 0; oi < objectCount; oi++) {
-
-				int x = map.getObjectX(gi, oi);
-				int y = map.getObjectY(gi, oi);
-				int width = map.getObjectWidth(gi, oi);
-				int height = map.getObjectHeight(gi, oi);
-				String a = map.getObjectName(gi, oi);
-
-				Wall w = new Wall(new Rectangle(x, y, width, height));
-				if (!a.equals("")) {
-					w.setName(a);
-					w.setWalkable(true);
-				}
-
-				walls.add(w);
+			Wall w = new Wall(new Rectangle(x, y, width, height));
+			if (!a.equals("")) {
+				w.setName(a);
+				w.setWalkable(true);
 			}
+
+			walls.add(w);
 		}
+
+		int objectivesId = 1;
+
+		for (int oi = 0; oi < map.getObjectCount(objectivesId); oi++) {
+			int x = map.getObjectX(objectivesId, oi);
+			int y = map.getObjectY(objectivesId, oi);
+			int width = map.getObjectWidth(objectivesId, oi);
+			int height = map.getObjectHeight(objectivesId, oi);
+
+			String idString = map.getObjectName(objectivesId, oi);
+			if (idString.isEmpty()) continue;
+
+			int id = Integer.parseInt(idString.split("_")[1]);
+			String message = map.getObjectProperty(objectivesId, oi, "message", null);
+			int time = Integer.parseInt(map.getObjectProperty(objectivesId, oi, "time", null));
+			objectiveList.add(new Objective(id, x, y, width, height, message, time));
+		}
+		Collections.sort(objectiveList);
 
 		OUTSIDE = map.getLayerIndex("outside");
 		FOYER = map.getLayerIndex("foyer");
@@ -57,6 +72,8 @@ public class Level implements TileBasedMap {
 		for (Entity e : new ConfigFileReader().read()) {
 			add(e);
 		}
+
+		main.gui.setMessage(objectiveList.get(0).getMessage());
 
 		// add(new Civilian(155, 630));
 		// add(new Cop(220, 850));
@@ -92,24 +109,33 @@ public class Level implements TileBasedMap {
 
 		map.render(0, main.yOffset, OUTSIDE);
 
-		if (true) {
+		if (Main.DEBUG) {
 			for (Wall w : walls) {
 				g.setColor(Color.green);
 				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getBoundaries().getWidth(), w.getBoundaries().getHeight());
+			}
+
+			for (Objective o : objectiveList) {
+				g.setColor(Color.magenta);
+				g.drawRect(o.getX(), o.getY() + main.yOffset, o.getWidth(), o.getHeight());
 			}
 		}
 
 	}
 
-	public void up() {
+	public void up(Wall w) {
 		if (layersToDraw == State.OUTSIDE) {
 			layersToDraw = State.FOYER;
-		} else if (layersToDraw == State.FOYER) {
+			w.done();
+		} else if (layersToDraw == State.FOYER /*&& objectiveList.get(0).getID() == 2*/) {
 			layersToDraw = State.OFFICES;
-		} else if (layersToDraw == State.OFFICES) {
+			w.done();
+		} else if (layersToDraw == State.OFFICES /*&& objectiveList.get(0).getID() == 5*/) {
 			layersToDraw = State.PREVAULT;
-		} else if (layersToDraw == State.PREVAULT) {
+			w.done();
+		} else if (layersToDraw == State.PREVAULT /*&& objectiveList.get(0).getID() == 7*/) {
 			layersToDraw = State.VAULT;
+			w.done();
 		}
 	}
 
