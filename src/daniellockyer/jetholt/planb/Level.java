@@ -139,6 +139,7 @@ public class Level implements TileBasedMap {
 				if (w.isWalkable()) continue;
 				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y + e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6))) return true;
 			} else if (e instanceof Bullet) {
+				if (w.isWalkable() && w.been()) continue;
 				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y, e.getWidth(), e.getHeight()))) return true;
 			}
 		}

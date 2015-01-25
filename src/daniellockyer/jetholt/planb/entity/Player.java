@@ -60,13 +60,15 @@ public class Player extends Entity {
 			}
 		}
 
-		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1 && position.y + dy < Main.HEIGHT) {
+		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1 && position.y + height + 40 + dy < Main.HEIGHT) {
 
 			if (!level.wall(this, dx * slowdown, 0)) {
 				move(dx * slowdown, 0);
 			}
 
-			if (position.y + dy < 200) {
+			if (position.y + dy < 220 && main.yOffset < -98) {
+				main.yOffset -= slowdown * dy;
+			} else if (dy > 0 && position.y + dy > 400 && main.yOffset > -384) {
 				main.yOffset -= slowdown * dy;
 			} else if (!level.wall(this, 0, dy * slowdown)) {
 				move(0, dy * slowdown);

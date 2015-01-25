@@ -5,9 +5,7 @@ import java.util.Stack;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Vector2f;
 
-import daniellockyer.jetholt.planb.Level;
-import daniellockyer.jetholt.planb.Main;
-import daniellockyer.jetholt.planb.commands.Command;
+import daniellockyer.jetholt.planb.*;
 
 public class BadGuy extends Entity {
 	private String name;

@@ -3,7 +3,6 @@ package daniellockyer.jetholt.planb;
 import java.io.*;
 import java.util.*;
 
-import daniellockyer.jetholt.planb.commands.Command;
 import daniellockyer.jetholt.planb.entity.BadGuy;
 
 public class ConfigFileReader {
@@ -26,15 +25,13 @@ public class ConfigFileReader {
 
 						int time = Integer.parseInt(parts[0]);
 
-						Command c = new Command(time, parts[1], Arrays.copyOfRange(parts, 2,
-								parts.length));
+						Command c = new Command(time, parts[1], Arrays.copyOfRange(parts, 2, parts.length));
 						commands.add(c);
 					}
 
 					Stack<Command> reversedStack = new Stack<Command>();
-					while (!commands.empty()) {
+					while (!commands.empty())
 						reversedStack.push(commands.pop());
-					}
 					temp.add(new BadGuy(name, reversedStack));
 				}
 			}

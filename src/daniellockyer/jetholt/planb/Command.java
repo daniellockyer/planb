@@ -1,4 +1,4 @@
-package daniellockyer.jetholt.planb.commands;
+package daniellockyer.jetholt.planb;
 
 public class Command {
 	private String command;

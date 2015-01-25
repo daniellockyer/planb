@@ -23,7 +23,6 @@ public class Cop extends Entity {
 
 		drawable = primary = new Image("cop1.png");
 		secondary = new Image("cop2.png");
-
 		pathFinder = new AStarPathFinder(level, 1000, true);
 	}
 

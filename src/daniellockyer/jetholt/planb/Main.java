@@ -43,7 +43,6 @@ public class Main extends BasicGame {
 		try {
 			AppGameContainer appgc = new AppGameContainer(new Main("PlanB"));
 			appgc.setDisplayMode(WIDTH, HEIGHT, false);
-			// appgc.setShowFPS(false);
 			appgc.setVSync(true);
 			appgc.setTargetFrameRate(60);
 			appgc.start();
