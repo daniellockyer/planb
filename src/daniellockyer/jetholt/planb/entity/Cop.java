@@ -33,8 +33,6 @@ public class Cop extends Entity {
 		if (path != null) {
 			for (int i = 0; i < 1; i++) {
 
-				System.out.println(getX() / Level.TILE_SIZE + " - " + path.getX(i));
-
 				int newX = ((getX() / Level.TILE_SIZE) - path.getX(i));
 				if (!level.wall(this, newX, 0)) move(newX, 0);
 

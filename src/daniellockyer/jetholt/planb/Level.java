@@ -76,7 +76,7 @@ public class Level implements TileBasedMap {
 		main.gui.setMessage(objectiveList.get(0).getMessage());
 
 		// add(new Civilian(155, 630));
-		add(new Cop(500, 850));
+		// add(new Cop(500, 850));
 	}
 
 	public void update() {
@@ -127,13 +127,13 @@ public class Level implements TileBasedMap {
 		if (layersToDraw == State.OUTSIDE) {
 			layersToDraw = State.FOYER;
 			w.done();
-		} else if (layersToDraw == State.FOYER /*&& objectiveList.get(0).getID() == 2*/) {
+		} else if (layersToDraw == State.FOYER /* && objectiveList.get(0).getID() == 2 */) {
 			layersToDraw = State.OFFICES;
 			w.done();
-		} else if (layersToDraw == State.OFFICES /*&& objectiveList.get(0).getID() == 5*/) {
+		} else if (layersToDraw == State.OFFICES /* && objectiveList.get(0).getID() == 5 */) {
 			layersToDraw = State.PREVAULT;
 			w.done();
-		} else if (layersToDraw == State.PREVAULT /*&& objectiveList.get(0).getID() == 7*/) {
+		} else if (layersToDraw == State.PREVAULT /* && objectiveList.get(0).getID() == 7 */) {
 			layersToDraw = State.VAULT;
 			w.done();
 		}
