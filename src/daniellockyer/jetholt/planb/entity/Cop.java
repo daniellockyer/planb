@@ -1,6 +1,7 @@
 package daniellockyer.jetholt.planb.entity;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.pathfinding.AStarPathFinder;
 import org.newdawn.slick.util.pathfinding.Path;
 
@@ -32,7 +33,7 @@ public class Cop extends Entity {
 		}
 
 		if (!level.wall(this, dx, 0)) {
-			if (position.x + dx > 840) {
+			if (position.x + dx > 640) {
 				move(dx, 0);
 			}
 		}
@@ -40,15 +41,17 @@ public class Cop extends Entity {
 			move(0, dy);
 		}
 
-		int angle = 0;
+		for (Entity e : level.entities) {
+			if (e instanceof Player) {
 
-		if (dy == -1) angle = 0;
-		if (dx == 1) angle = 90;
-		if (dy == 1) angle = 180;
-		if (dx == -1) angle = 270;
+			} else if (e instanceof BadGuy) {
+				Vector2f directionVector = this.getPosition().sub(e.position);
 
-		level.addTemp(new Bullet(getPosition(), angle));
-		// move(path.getStep(i).getX() - getX(), path.getStep(i).getY() - getY());
+				double bulletAngle = Math.toDegrees(Math.atan(directionVector.y / directionVector.x));
+
+				level.addTemp(new Bullet(position, bulletAngle));
+			}
+		}
 	}
 
 	@Override
