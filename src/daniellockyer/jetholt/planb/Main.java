@@ -34,7 +34,7 @@ public class Main extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		level.render(yOffset, g);
+		level.render(g);
 		gui.render(g);
 		player.render(g);
 	}

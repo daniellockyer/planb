@@ -1,10 +1,10 @@
 package daniellockyer.jetholt.planb.entity;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
-import daniellockyer.jetholt.planb.Level;
-import daniellockyer.jetholt.planb.Main;
+import daniellockyer.jetholt.planb.*;
 
 public class Player extends Entity {
 	private Input input;
@@ -16,7 +16,7 @@ public class Player extends Entity {
 		this.position.x = 30;
 		this.position.y = 475;
 
-		setSize(32, 32);
+		setSize(48, 96);
 	}
 
 	@Override
@@ -72,43 +72,19 @@ public class Player extends Entity {
 
 			if (position.y + dy < 200) {
 				main.yOffset -= slowdown * dy;
-			} else {
-				if (!level.wall(this, 0, dy * slowdown)) {
-					move(0, dy * slowdown);
-				}
+			} else if (!level.wall(this, 0, dy * slowdown)) {
+				move(0, dy * slowdown);
 			}
 
-			String name = level.wallName(this);
-
-			if (name != null) {
-				switch (name) {
-				case "collision_door_main":
-					if (!level.getWallIntersect(this).been()) {
-						level.getWallIntersect(this).done();
+			try {
+				Wall w = level.getWallIntersect(this);
+				if (w.isWalkable()) {
+					if (!w.been()) {
+						w.done();
 						level.up();
 					}
-					break;
-				case "collision_door_staff":
-					if (!level.getWallIntersect(this).been()) {
-						level.getWallIntersect(this).done();
-						level.up();
-					}
-					break;
-				case "collision_door_vault":
-					if (!level.getWallIntersect(this).been()) {
-						level.getWallIntersect(this).done();
-						level.up();
-					}
-					break;
-				case "collision_door_prevault":
-					if (!level.getWallIntersect(this).been()) {
-						level.getWallIntersect(this).done();
-						level.up();
-					}
-					break;
-				default:
-					break;
 				}
+			} catch (NullPointerException e) {
 			}
 		}
 
@@ -128,5 +104,15 @@ public class Player extends Entity {
 		if (input.isKeyPressed(Input.KEY_O)) {
 			level.up();
 		}
+	}
+
+	@Override
+	public void render(Graphics g) {
+		super.render(g);
+		g.setColor(Color.pink);
+		Rectangle r2 = new Rectangle(getPosition().x, getPosition().y + getHeight()
+				- (getHeight() / 6), getWidth(), getHeight() / 6);
+
+		g.draw(r2);
 	}
 }

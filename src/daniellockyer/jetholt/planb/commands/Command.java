@@ -5,7 +5,7 @@ public class Command {
 	private String[] arguments;
 	private int time;
 
-	public Command(int time, String command, String... arguments) {
+	public Command(int time, String command, String[] arguments) {
 		this.time = time;
 		this.command = command;
 		this.arguments = arguments;

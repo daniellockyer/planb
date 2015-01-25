@@ -1,11 +1,9 @@
 package daniellockyer.jetholt.planb;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 import daniellockyer.jetholt.planb.entity.*;
@@ -16,7 +14,7 @@ public class Level {
 	private Main main;
 	private State layersToDraw = State.OUTSIDE;
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
-	private ArrayList<Entity> entities = new ArrayList<Entity>();
+	public ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	private final int OUTSIDE, FOYER, OFFICES, PREVAULT, VAULT, FLOOR;
 
@@ -76,26 +74,26 @@ public class Level {
 			main.yOffset += 12 * amount;
 	}
 
-	public void render(int yOffset, Graphics g) {
-		map.render(0, yOffset, FLOOR);
-		map.render(0, yOffset, VAULT);
-		map.render(0, yOffset, PREVAULT);
-		map.render(0, yOffset, OFFICES);
-		map.render(0, yOffset, FOYER);
+	public void render(Graphics g) {
+		map.render(0, main.yOffset, FLOOR);
+		map.render(0, main.yOffset, VAULT);
+		map.render(0, main.yOffset, PREVAULT);
+		map.render(0, main.yOffset, OFFICES);
+		map.render(0, main.yOffset, FOYER);
 
 		for (String i : layersToDraw.layers()) {
-			map.render(0, yOffset, map.getLayerIndex(i));
+			map.render(0, main.yOffset, map.getLayerIndex(i));
 		}
 
 		for (Entity e : entities)
 			e.render(g);
 
-		map.render(0, yOffset, OUTSIDE);
+		map.render(0, main.yOffset, OUTSIDE);
 
-		if (false) {
+		if (true) {
 			for (Wall w : walls) {
 				g.setColor(Color.green);
-				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + yOffset, w
+				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w
 						.getBoundaries().getWidth(), w.getBoundaries().getHeight());
 			}
 		}
@@ -124,77 +122,40 @@ public class Level {
 
 	}
 
-	public boolean wall(Vector2f pos, Entity e, float xa, float ya) {
-		for (int i = 0; i < walls.size(); i++) {
-			Wall w = walls.get(i);
-			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + main.yOffset;
-			float x1 = pos.x + xa;
-			float y1 = pos.y + ya;
-			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()) {
-				if (y1 <= y0 + w.getHeight() && y1 + e.getHeight() >= y0) { return true; }
-			}
-		}
-		return false;
-	}
-
-	public List<Entity> getEntities(Vector2f from, Entity ignore, int radius) {
-		List<Entity> result = new ArrayList<Entity>();
-		for (int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
-			if (e == ignore) continue;
-			double dx = e.getPosition().x - from.x;
-			double dy = e.getPosition().y - from.y;
-			if (Math.sqrt(dx * dx + dy * dy) > radius) continue;
-			result.add(e);
-		}
-		return result;
-	}
-
-	public List<Entity> getEntities() {
-		return entities;
-	}
-
-	public String wallName(Entity e) {
-		for (int i = 0; i < walls.size(); i++) {
-			Wall w = walls.get(i);
-			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + main.yOffset;
-			float x1 = e.getPosition().x;
-			float y1 = e.getPosition().y;
-			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
-					&& y1 + e.getHeight() >= y0) { return w.getName(); }
-		}
-		return "";
-	}
-
 	public Wall getWallIntersect(Entity e) {
-		for (int i = 0; i < walls.size(); i++) {
-			Wall w = walls.get(i);
-			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + main.yOffset;
-			float x1 = e.getPosition().x;
-			float y1 = e.getPosition().y;
-			if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth() && y1 <= y0 + w.getHeight()
-					&& y1 + e.getHeight() >= y0) { return w; }
+		for (Wall w : walls) {
+
+			Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
+					+ main.yOffset, w.getWidth(), w.getHeight());
+
+			Rectangle r2 = new Rectangle(e.getPosition().x, e.getPosition().y + e.getHeight()
+					- (e.getHeight() / 6), e.getWidth(), e.getHeight() / 6);
+
+			if (r1.intersects(r2)) return w;
 		}
 		return null;
 	}
 
 	public boolean wall(Entity e, float xa, float ya) {
-		for (int i = 0; i < walls.size(); i++) {
-			Wall w = walls.get(i);
-			float x0 = w.getBoundaries().getX();
-			float y0 = w.getBoundaries().getY() + main.yOffset;
-			float x1 = e.getPosition().x + xa;
-			float y1 = e.getPosition().y + ya;
-			if (w.isWalkable()) return false;
+		for (Wall w : walls) {
 			if (e instanceof Player) {
-				if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()
-						&& y1 <= (y0 + w.getHeight()) - w.getHeight() / 3
-						&& y1 + e.getHeight() / 3 >= y0) { return true; }
-			} else if (x1 + e.getWidth() >= x0 && x1 <= x0 + w.getWidth()
-					&& y1 <= y0 + w.getHeight() && y1 + e.getHeight() >= y0) { return true; }
+				if (w.isWalkable()) continue;
+				Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
+						+ main.yOffset, w.getWidth(), w.getHeight());
+
+				Rectangle r2 = new Rectangle(e.getPosition().x + xa, e.getPosition().y
+						+ e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6);
+
+				if (r1.intersects(r2)) return true;
+			} else if (e instanceof Bullet) {
+				Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
+						+ main.yOffset, w.getWidth(), w.getHeight());
+
+				Rectangle r2 = new Rectangle(e.getPosition().x + xa, e.getPosition().y,
+						e.getWidth(), e.getHeight());
+
+				if (r1.intersects(r2)) return true;
+			}
 		}
 		return false;
 	}

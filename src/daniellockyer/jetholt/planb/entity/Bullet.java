@@ -2,8 +2,7 @@ package daniellockyer.jetholt.planb.entity;
 
 import java.util.List;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -17,6 +16,15 @@ public class Bullet extends Entity {
 		this.position = position;
 		angle = Math.toRadians(angle - 90);
 		this.direction = new Vector2f((float) Math.cos(angle), (float) Math.sin(angle));
+		try {
+			drawable = new Image("bullet.png");
+			width = drawable.getWidth();
+			height = drawable.getHeight();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+
+		drawable.rotate((float) Math.toDegrees(angle));
 	}
 
 	@Override
@@ -31,7 +39,7 @@ public class Bullet extends Entity {
 	}
 
 	private boolean collision() {
-		List<Entity> entities = level.getEntities();
+		List<Entity> entities = level.entities;
 
 		for (Entity e : entities) {
 			if (!(e instanceof Bullet)) {
@@ -49,8 +57,7 @@ public class Bullet extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.blue);
-		g.drawRoundRect(position.x, position.y, 15, 5, 5);
+		g.drawImage(drawable, position.x, position.y);
 	}
 
 }

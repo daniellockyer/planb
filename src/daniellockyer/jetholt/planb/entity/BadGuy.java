@@ -94,6 +94,5 @@ public class BadGuy extends Entity {
 		case 7:
 			break;
 		}
-		// g.drawImage(stop, getX(), getY());
 	}
 }
