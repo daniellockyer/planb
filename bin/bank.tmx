@@ -9,6 +9,9 @@
  <tileset firstgid="321" name="sign" tilewidth="32" tileheight="32">
   <image source="sign.png" width="480" height="288"/>
  </tileset>
+ <tileset firstgid="456" name="civilians" tilewidth="32" tileheight="32">
+  <image source="civilians.png" width="192" height="96"/>
+ </tileset>
  <layer name="floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2UTU7DMBCFzQlZBLosi0CWZUHpBUp7BjgUlG0q9ecCbblAKS+SRx29jOMYNcoCIn16M0k89hvHce7/6vNagnfwARbg08hDcWxcLC89K7AGG7A18lAcGxfLl54d2IMD+DLyUMx+dsa9prri/wi+wanakKt6HorZz9Hw2FRX/If6xF74OfvZGPe075D/UP95Xfyc/RyMe9p3yH+o/7yuk9ETq6+yZlZ5T3LxLzW5NtddGD2xztVaYa1DPPH+c23r3HBP+PnWP9+r91jFF+8/17bODffEOlcZuFF6CwbgmuD959qhcxPLc8i9O+sDKIz5ef8v9V8V309gDJ7BJOC/zf83NRffsf6Xrt3/NzUX37r/mbEe8Z+6v7F8quaQ/ueu/j2If70uGTdQcapmao4Xwzf71+uScYWKUzV352+ucHXf7F9/pzJuouJUrerNwFzlY+M98T/1fZqpcXMVp6quZ+Wi4n8I7jzDjlTmsnQEHj2jjjQ0v/avtSlOpa1/rU1xKm39/8X9j+lvxpQXmqeLuXXtiteeeeuZH6EJ7TkAEAAA
@@ -84,34 +87,34 @@
    H4sIAAAAAAAAC+3NQQkAQAgAQfs/jGCFq3DRtIUgM7DvjQAgp7f4r+kv/gEAuK8BoSvL0QAQAAA=
   </data>
  </layer>
- <layer name="wall_prevault" width="32" height="32" visible="0">
+ <layer name="wall_prevault" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3UyQkCQRCF4Y7QXMYMNIMxA9cEXBJwuakHl9vMRKCm4C/UoenDQNMUBVIPPh7U5d0qBPsMjPj+f+5XmGOBJVYYyj1urf0R1thgix3Gco9ba7/GHgccccJE7nFr7U9xwx0PPDGTe9xa+7+cxQXX0B+N/Ua06Az2X+KNj8F+Tqz3079Q2rlJ/0Jp5yb9C6Wdm/QvlLbH4/F4PJ7+fAHluWIrABAAAA==
   </data>
  </layer>
  <layer name="prevault" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMAvqCggG2P2EY28+ORYwNKs4BxJxAXEdD+0fBKBgFo2AUjIJRMApGweAFALgt3hkAEAAA
+   H4sIAAAAAAAAC2NgGAWjYBSMAvqCggG2P2EY28+ORYwNKs4BxJxAXEdD+0fBKBjK4AQjdvGzJIqTC87hMO8yieLkgis4zLtJojilgJFG5o6CUTAKRsEoYGAAAInodhUAEAAA
   </data>
  </layer>
- <layer name="wall_offices" width="32" height="32" visible="0" opacity="0.97">
+ <layer name="wall_offices" width="32" height="32" opacity="0.97">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2SywmAMBBEU6GgnWgH2oF2oBc/DfhpwE9VjpCDLEEIa8hlHjwG5rBzWWPik0SS+9zn/v93c5jC7JVPV4gMtV/CHg5whJPtKpGh9ms4wwWucLNdIzLUfgt3eMATXrbrRIba9yX2vus3NemL6zc16YvrNzXpi+s3NUkIIYSQb25KJDo3ABAAAA==
   </data>
  </layer>
  <layer name="offices" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SSwrCMBgG09ZakxZEXfnY+Nj4OIxH8Ai9/6pTqhBcWBctP+I3MJv8IUNCnBNCCPFP7BLb/ty4nxn3Twb9AhO6Kd6M7u/pBiyjfjXg+XXPfEF3iauoXw7Yf3yYBVzT3eB2pH4fe7oHPBr1z3QveI367btkOMEc21H6tjZ13f+dof9yzwv/NESz+0j3E0KIX6EBGyMUvwAQAAA=
+   H4sIAAAAAAAAC+2SSwrCMBQAEyvapBXRquBn42ej9jAewSN4TVeuvI9TcPEUaUArAX0DAyWvzZASYxRFUZR/YmHjtc+0+xH7F9pJxP6V9iZCv4uWbgvLSOd3dD1mop83uP8pMB/QHWIh+lmD/WPNzOOU7gznX+qHWNJd4bqm3wvcjfyDu7Pl2x3uxR7Vf0mwjSPWxzixj88d83r9+Z3qjqfoRNPd9WJ2eP8IiqIoP8EN8TGImQAQAAA=
   </data>
  </layer>
- <layer name="wall_foyer" width="32" height="32" visible="0">
+ <layer name="wall_foyer" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3NOQpCMRDG8VzABdwat8KlcQO3xg3cOkFvoDfQG+gNnjd4ntPCf2CEENBCi1e8Gfgxk5DMZ0z0tYuI5mu+5mu+5mu+5sc3/4Kz9MMf7P+9d/fem0EWOeRRcPJvuEovooTyD7P9f8RJsiuoyv0TNdTRQNPJvyOQ3kIbHW9OfLh358DZY3sXPTn3McAQI4yd/AdC6RNMMfPmJFJIf3kTOntsn2Mh5yVWWGODrdHS0tKKd70AU/0MgAAQAAA=
   </data>
  </layer>
  <layer name="foyer" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2RWwqDMBREk1aN8VH8aEuX5RJcgnuprdt1foQETBOtEpA5cGBI4E4uEYIQQgghhMQkkUKkMJPr8x5UmFPDm7SzcpybeXOnke+Y84BPaefccW5mF72nv9z+9CC6yP2N52/m/jcc4AeOK/P3x/xXYP9RhO5/FL79C3iBV5jAFGZQwRzqgHu9MHe+a/9fgZyUCTRqI2sAEAAA
+   H4sIAAAAAAAAC+2QawqCQBSF5+Y7NfrZslqCS2gvWa1JEAQhaDkdMSFE8foYgjgffHhwhnO5YwwhhBBCCPklrhjjQV/m5y1IPj0HaXMqbQ6+ckOXk97/RTMVd8IV/ZeJ8xiWG73fEJlifm1x/nGiu5n/wp0rvjm8wcfMfB/pLtB7Usy3RSW6/W3xVOy/hzvoQBd60IcBDGGkOI8Geruz8/o1yJ/yBsGZdkoAEAAA
   </data>
  </layer>
  <layer name="wall_outside" width="32" height="32" visible="0">
@@ -179,7 +182,7 @@
     <property name="time" value="2"/>
    </properties>
   </object>
-  <object id="83" name="objective_1" x="352" y="712" width="96" height="48">
+  <object id="83" name="objective_1" x="136" y="712" width="464" height="40">
    <properties>
     <property name="message" value="&quot;Threaten Teller To Unlock Door.&quot;"/>
     <property name="time" value="5"/>
@@ -188,13 +191,13 @@
   <object id="84" name="objective_2" x="864" y="608" width="120" height="80">
    <properties>
     <property name="message" value="&quot;Hack Computer To Disable Camera.&quot;"/>
-    <property name="time" value="3"/>
+    <property name="time" value="15"/>
    </properties>
   </object>
   <object id="85" name="objective_4" x="704" y="384" width="128" height="48">
    <properties>
     <property name="message" value="&quot;Try Keys to Unlock.&quot;"/>
-    <property name="time" value="3"/>
+    <property name="time" value="5"/>
    </properties>
   </object>
   <object id="86" name="objective_5" x="704" y="768" width="64" height="64">
@@ -206,7 +209,7 @@
   <object id="88" name="objective_6" x="704" y="288" width="128" height="40">
    <properties>
     <property name="message" value="&quot;Drill the Vault Door.&quot;"/>
-    <property name="time" value="3"/>
+    <property name="time" value="30"/>
    </properties>
   </object>
   <object id="89" name="objective_7" x="416" y="264" width="190" height="56">

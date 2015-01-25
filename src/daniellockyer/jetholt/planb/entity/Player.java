@@ -114,7 +114,7 @@ public class Player extends Entity {
 				}
 				if (objective == 4) {
 					level.add(new Cop(600, Main.HEIGHT + 220));
-					level.add(new Cop(610, Main.HEIGHT + 210));
+					level.add(new Cop(620, Main.HEIGHT + 210));
 					level.add(new Cop(640, Main.HEIGHT + 215));
 
 					for (Entity e : level.entities) {
