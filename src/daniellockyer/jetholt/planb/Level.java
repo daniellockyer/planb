@@ -92,7 +92,7 @@ public class Level {
 
 		map.render(0, yOffset, OUTSIDE);
 
-		if (true) {
+		if (false) {
 			for (Wall w : walls) {
 				g.setColor(Color.green);
 				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + yOffset, w
@@ -151,17 +151,8 @@ public class Level {
 		return result;
 	}
 
-	public List<Entity> getEntities(Entity from, int radius) {
-		List<Entity> result = new ArrayList<Entity>();
-		for (int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
-			if (e == from) continue;
-			double dx = e.getPosition().x - from.getPosition().x;
-			double dy = e.getPosition().y - from.getPosition().y;
-			if (Math.sqrt(dx * dx + dy * dy) > radius) continue;
-			result.add(e);
-		}
-		return result;
+	public List<Entity> getEntities() {
+		return entities;
 	}
 
 	public String wallName(Entity e) {

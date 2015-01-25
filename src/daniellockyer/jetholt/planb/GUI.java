@@ -25,7 +25,7 @@ public class GUI {
 		g.drawString(message, 430, Main.HEIGHT - 30);
 
 		for (int i = 0; i < 10; i++) {
-			g.drawImage((main.player.health > i ? heart : damaged_heart), 5 + (32 * i), 603);
+			g.drawImage((main.player.health > i ? heart : damaged_heart), 5 + (32 * i), 643);
 		}
 
 		g.setColor(Color.black);

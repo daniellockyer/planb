@@ -7,11 +7,9 @@ import daniellockyer.jetholt.planb.Level;
 import daniellockyer.jetholt.planb.Main;
 
 public class Player extends Entity {
-	private Image image, secondary;
 	private Input input;
 	private double angle = 90;
 	private float slowdown = 3.0f;
-	public int health = 10;
 
 	public Player(Input input) {
 		this.input = input;
@@ -24,7 +22,7 @@ public class Player extends Entity {
 	@Override
 	public void init(Main main, Level level) throws SlickException {
 		super.init(main, level);
-		drawable = image = new Image("player2.png");
+		drawable = primary = new Image("player2.png");
 		secondary = new Image("player.png");
 	}
 
@@ -115,7 +113,7 @@ public class Player extends Entity {
 		}
 
 		if (moveCounter == MAX_MOVE) {
-			drawable = (drawable == image ? secondary : image);
+			drawable = (drawable == primary ? secondary : primary);
 			moveCounter = 0;
 		}
 

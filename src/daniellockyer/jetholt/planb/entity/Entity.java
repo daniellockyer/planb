@@ -15,6 +15,8 @@ public abstract class Entity {
 	public boolean removed = false;
 	protected int direction;
 	protected Image drawable;
+	public int health = 10;
+	protected Image primary, secondary;
 	protected Main main;
 	protected final int MAX_MOVE = 10;
 	protected int moveCounter = 0;
