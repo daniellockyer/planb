@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="102">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="tileset2" tilewidth="32" tileheight="32">
+  <image source="tileset2.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="321" name="sign" tilewidth="32" tileheight="32">
+  <image source="sign.png" width="480" height="288"/>
+ </tileset>
+ <tileset firstgid="456" name="civilians" tilewidth="32" tileheight="32">
+  <image source="civilians.png" width="192" height="96"/>
+ </tileset>
+ <layer name="floor" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2UTU7DMBCFzQlZBLosi0CWZUHpBUp7BjgUlG0q9ecCbblAKS+SRx29jOMYNcoCIn16M0k89hvHce7/6vNagnfwARbg08hDcWxcLC89K7AGG7A18lAcGxfLl54d2IMD+DLyUMx+dsa9prri/wi+wanakKt6HorZz9Hw2FRX/If6xF74OfvZGPe075D/UP95Xfyc/RyMe9p3yH+o/7yuk9ETq6+yZlZ5T3LxLzW5NtddGD2xztVaYa1DPPH+c23r3HBP+PnWP9+r91jFF+8/17bODffEOlcZuFF6CwbgmuD959qhcxPLc8i9O+sDKIz5ef8v9V8V309gDJ7BJOC/zf83NRffsf6Xrt3/NzUX37r/mbEe8Z+6v7F8quaQ/ueu/j2If70uGTdQcapmao4Xwzf71+uScYWKUzV352+ucHXf7F9/pzJuouJUrerNwFzlY+M98T/1fZqpcXMVp6quZ+Wi4n8I7jzDjlTmsnQEHj2jjjQ0v/avtSlOpa1/rU1xKm39/8X9j+lvxpQXmqeLuXXtiteeeeuZH6EJ7TkAEAAA
+  </data>
+ </layer>
+ <layer name="wall_vault" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="vault" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UyU4CQRDG8X4FxQWPoKIccUE9qqxv5yPwCMATqFe56AUSvbijcGFx98CfQyXD0JPuZAJG7S/5pQ5V6UpmklLq5xPFEmYwiwjmMI8FLHpmTH2bN6RK1pFEDHEs4xurSGDNMyP9lYB+TDPT9s1IlexiDylsYBNb2EYaO54ZU9/mDamSAorYxwEOkUEWOeQ9M6a+zRtSJXU01PRSQfUP7j9DDQ+a3i3ucI8TnE5g/yWu8Krp9dDHC85xMYH9/u9qG9l/hLKm+hM0F3Z/Ccea6k/QXNj9YfPb9//X/3+NGzyjpUZvxfCWPBp6TTyp8btimw66+MSXGr0Vw1vyZui940ON3xUXFxcXFxcXfQaqr6YBABAAAA==
+  </data>
+ </layer>
+ <layer name="gold_pile_12" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NsQkAMAgAQfdvMkKcIDPGGWxEuIOvPwIA6HjVGfxndQf/AMAuH+H8/0kAEAAA
+  </data>
+ </layer>
+ <layer name="gold_pile_11" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NQQ0AMAgAMfyLmIRhYdKGBV6EpE3ufREAQMetcvB/qjf4BwB2+v+vMqgAEAAA
+  </data>
+ </layer>
+ <layer name="gold_pile_10" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NsQkAMAgAQfevskEcISPGEexEuIOvPwIA6DjVG/xndQf/AMBuH1UKa1YAEAAA
+  </data>
+ </layer>
+ <layer name="gold_pile_9" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NwQkAMAgAMfcfoiMUR+ho9ekGgiRw74sAALpb5eD/VG/wDwDs9AGOzabXABAAAA==
+  </data>
+ </layer>
+ <layer name="gold_pile_8" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NwQkAMAgAMfd/tBvYVatTCJLAvS8CAGinuoP/rN7gHwDY7QN6tIxKABAAAA==
+  </data>
+ </layer>
+ <layer name="gold_pile_7" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NMQ0AQAjAQPxPrwAkvEVwwcBd0rkRAHDbm/7iP6da/AMANzRGC+ryABAAAA==
+  </data>
+ </layer>
+ <layer name="gold_pile_6" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NQQkAQAgAQfuH8CJYUTvcQ4QZ2PdGAPCjFt85vcU/AAB3NBWTlKwAEAAA
+  </data>
+ </layer>
+ <layer name="gold_pile_5" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NsQkAIBAEwe8/UCvQVr0WjB5hBjbeKgBejTTTavrvdJreAAD86QKPZt83ABAAAA==
+  </data>
+ </layer>
+ <layer name="gold_pile_4" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NsQkAMAgAQfcvMkIcISvGEexEuIOvPwKArlO9wf+tcvAPAMBeH+IGGVgAEAAA
+  </data>
+ </layer>
+ <layer name="gold_pile_3" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NwQkAMAgAMfcfot3ArljfLiBIAve+CAC6rN7g/1R38A8AwD4fqAHMTwAQAAA=
+  </data>
+ </layer>
+ <layer name="gold_pile_2" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NsQkAMAgAQfdvskHcIDPGxhkEuYOvPwKA9qoz+L9VDv4BANjrA6QskMYAEAAA
+  </data>
+ </layer>
+ <layer name="gold_pile_1" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NQQkAQAgAQfs/jGCFq3DRtIUgM7DvjQAgp7f4r+kv/gEAuK8BoSvL0QAQAAA=
+  </data>
+ </layer>
+ <layer name="wall_prevault" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UyQkCQRCF4Y7QXMYMNIMxA9cEXBJwuakHl9vMRKCm4C/UoenDQNMUBVIPPh7U5d0qBPsMjPj+f+5XmGOBJVYYyj1urf0R1thgix3Gco9ba7/GHgccccJE7nFr7U9xwx0PPDGTe9xa+7+cxQXX0B+N/Ua06Az2X+KNj8F+Tqz3079Q2rlJ/0Jp5yb9C6Wdm/QvlLbH4/F4PJ7+fAHluWIrABAAAA==
+  </data>
+ </layer>
+ <layer name="prevault" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMAvqCggG2P2EY28+ORYwNKs4BxJxAXEdD+0fBKBjK4AQjdvGzJIqTC87hMO8yieLkgis4zLtJojilgJFG5o6CUTAKRsEoYGAAAInodhUAEAAA
+  </data>
+ </layer>
+ <layer name="wall_offices" width="32" height="32" opacity="0.97">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2SywmAMBBEU6GgnWgH2oF2oBc/DfhpwE9VjpCDLEEIa8hlHjwG5rBzWWPik0SS+9zn/v93c5jC7JVPV4gMtV/CHg5whJPtKpGh9ms4wwWucLNdIzLUfgt3eMATXrbrRIba9yX2vus3NemL6zc16YvrNzXpi+s3NUkIIYSQb25KJDo3ABAAAA==
+  </data>
+ </layer>
+ <layer name="offices" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2SSwrCMBQAEyvapBXRquBn42ej9jAewSN4TVeuvI9TcPEUaUArAX0DAyWvzZASYxRFUZR/YmHjtc+0+xH7F9pJxP6V9iZCv4uWbgvLSOd3dD1mop83uP8pMB/QHWIh+lmD/WPNzOOU7gznX+qHWNJd4bqm3wvcjfyDu7Pl2x3uxR7Vf0mwjSPWxzixj88d83r9+Z3qjqfoRNPd9WJ2eP8IiqIoP8EN8TGImQAQAAA=
+  </data>
+ </layer>
+ <layer name="wall_foyer" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NOQpCMRDG8VzABdwat8KlcQO3xg3cOkFvoDfQG+gNnjd4ntPCf2CEENBCi1e8Gfgxk5DMZ0z0tYuI5mu+5mu+5mu+5sc3/4Kz9MMf7P+9d/fem0EWOeRRcPJvuEovooTyD7P9f8RJsiuoyv0TNdTRQNPJvyOQ3kIbHW9OfLh358DZY3sXPTn3McAQI4yd/AdC6RNMMfPmJFJIf3kTOntsn2Mh5yVWWGODrdHS0tKKd70AU/0MgAAQAAA=
+  </data>
+ </layer>
+ <layer name="foyer" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2QawqCQBSF5+Y7NfrZslqCS2gvWa1JEAQhaDkdMSFE8foYgjgffHhwhnO5YwwhhBBCCPklrhjjQV/m5y1IPj0HaXMqbQ6+ckOXk97/RTMVd8IV/ZeJ8xiWG73fEJlifm1x/nGiu5n/wp0rvjm8wcfMfB/pLtB7Usy3RSW6/W3xVOy/hzvoQBd60IcBDGGkOI8Geruz8/o1yJ/yBsGZdkoAEAAA
+  </data>
+ </layer>
+ <layer name="wall_outside" width="32" height="32" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SVVNVURgG4M1PsOtKxb5Ssa9oMLAF7AbsBkxMwO7u7u5u/4w/gQufM+jMGoa6OKgXZ808s7/ZZ+3vXWfWF0X/fuX9BRX1vEvkJ/IT+Yn8/zE/NSmK0kgng0yyyCaHXEYyitGMIY+xSfHJH6fPeCYwkUlMZgr5FFDIVKYxnRnMjFP+LH1mM4e5zGM+C1hIEcWUsIjFLGFpnPKX6bOcFaxkFatZw1rWUUoZ5axnAxvjlL9Jn81soYKtbGM7O9jJLiqpoprd7IlT/l599rGfAxzkEIc5wlGOcZwTnOQUp+OUf0afs5zjPBe4yCUuc4WrXOM6N7jJrTjl39bnDne5x30e8JBHPOYJT3nGc17wsoH8NrSlHe3p0ET+K31e84a3vOM9H/jIJz7zha984zs/GsivIZke9KRXkB+eqyXqjgwkhUEMZkiQ3y04VylllDdSJzdzX6znT3qTTgaZZJEd5Kf83hc7VyVVVDdS1zRz35//OjRqfIXnaok6p4n88K5a0Tqqf15j99ipzm/h/rrfhd80tsK5zKeAwmbWXaPa+elOZ7oEz9iMx+6+TxP54VwWUUxJM+v+DIhq57sv/YJnbMZjdz+sifzwrlJJi2rnNazrzm7sTnPr7BnOiOAZ7kusxKpv/QIvHOLTABAAAA==
+  </data>
+ </layer>
+ <layer name="outside" width="32" height="32" opacity="0.9">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3N2xFDAAAFUfVF0gBJA0IDSAMeDQgVoAKv1mwT5vq4O3O+Nwicc84555y7pgdCPPES/CPEeOMj+Cf4IkUm+OcoUOIn+Feo0aAV/Dv80WMQ/O/YiEn4X7AK/zN24X/DIfyfs0wAkgAQAAA=
+  </data>
+ </layer>
+ <objectgroup name="collision" visible="0">
+  <object id="14" x="32" y="880" width="576" height="16"/>
+  <object id="22" x="736" y="880" width="96" height="16"/>
+  <object id="23" x="32" y="688" width="704" height="16"/>
+  <object id="24" x="800" y="688" width="32" height="16"/>
+  <object id="25" name="collision_door_staff" x="736" y="688" width="64" height="16"/>
+  <object id="26" name="collision_door_main" x="608" y="880" width="128" height="16"/>
+  <object id="27" x="824" y="704" width="8" height="192"/>
+  <object id="29" x="32" y="704" width="8" height="192"/>
+  <object id="30" x="32" y="576" width="8" height="128"/>
+  <object id="32" x="664" y="576" width="8" height="32"/>
+  <object id="33" x="832" y="688" width="160" height="16"/>
+  <object id="34" x="984" y="704" width="8"/>
+  <object id="36" x="984" y="512" width="8" height="192"/>
+  <object id="39" x="864" y="496" width="128" height="16"/>
+  <object id="40" x="864" y="576" width="8" height="16"/>
+  <object id="43" x="864" y="592" width="120" height="16"/>
+  <object id="44" x="864" y="672" width="8" height="16"/>
+  <object id="48" x="96" y="768" width="512" height="32"/>
+  <object id="51" x="608" y="576" width="56"/>
+  <object id="53" x="608" y="288" width="64" height="288"/>
+  <object id="55" x="672" y="368" width="32" height="16"/>
+  <object id="56" x="832" y="368" width="160" height="16"/>
+  <object id="57" x="608" y="224" width="96" height="64"/>
+  <object id="58" x="832" y="224" width="160" height="64"/>
+  <object id="61" x="928" y="96" width="64" height="128"/>
+  <object id="63" x="32" y="144" width="64" height="368"/>
+  <object id="65" x="984" y="288" width="8" height="96"/>
+  <object id="66" x="984" y="384" width="8" height="128"/>
+  <object id="67" x="944" y="384" width="32" height="112"/>
+  <object id="68" name="collision_door_vault" x="704" y="256" width="128" height="32"/>
+  <object id="69" name="collision_door_prevault" x="704" y="368" width="128" height="16"/>
+  <object id="72" x="416" y="320" width="192" height="56"/>
+  <object id="73" x="416" y="448" width="192" height="64"/>
+  <object id="74" x="96" y="448" width="192" height="64"/>
+  <object id="75" x="96" y="320" width="192" height="56"/>
+  <object id="76" x="32" y="144" width="896" height="16"/>
+  <object id="77" x="32" y="512" width="576" height="64"/>
+  <object id="92" x="40" y="96" width="888" height="48"/>
+  <object id="93" x="832" y="704" width="192" height="128"/>
+  <object id="95" x="0" y="96" width="32" height="800"/>
+  <object id="96" x="0" y="40" width="992" height="120"/>
+  <object id="97" x="912" y="608" width="72" height="32"/>
+  <object id="99" x="912" y="544" width="72" height="48"/>
+  <object id="100" x="960" y="512" width="24" height="32"/>
+  <object id="101" x="800" y="736" width="24" height="120"/>
+ </objectgroup>
+ <objectgroup name="objective">
+  <object id="81" x="944" y="392" height="40"/>
+  <object id="82" name="objective_3" x="896" y="384" width="48" height="80">
+   <properties>
+    <property name="message" value="&quot;Retrieve Keychain Planted by Insider&quot;"/>
+    <property name="time" value="2"/>
+   </properties>
+  </object>
+  <object id="83" name="objective_1" x="136" y="712" width="464" height="40">
+   <properties>
+    <property name="message" value="&quot;Threaten Teller To Unlock Door.&quot;"/>
+    <property name="time" value="5"/>
+   </properties>
+  </object>
+  <object id="84" name="objective_2" x="864" y="608" width="120" height="80">
+   <properties>
+    <property name="message" value="&quot;Hack Computer To Disable Camera.&quot;"/>
+    <property name="time" value="3"/>
+   </properties>
+  </object>
+  <object id="85" name="objective_4" x="704" y="384" width="128" height="48">
+   <properties>
+    <property name="message" value="&quot;Try Keys to Unlock.&quot;"/>
+    <property name="time" value="3"/>
+   </properties>
+  </object>
+  <object id="86" name="objective_5" x="704" y="768" width="64" height="64">
+   <properties>
+    <property name="message" value="&quot;Retrieve drill from Jetroid's corpse.&quot;"/>
+    <property name="time" value="2"/>
+   </properties>
+  </object>
+  <object id="88" name="objective_6" x="704" y="288" width="128" height="40">
+   <properties>
+    <property name="message" value="&quot;Drill the Vault Door.&quot;"/>
+    <property name="time" value="3"/>
+   </properties>
+  </object>
+  <object id="89" name="objective_7" x="416" y="264" width="190" height="56">
+   <properties>
+    <property name="message" value="&quot;Bag Gold.&quot;"/>
+    <property name="time" value="2"/>
+   </properties>
+  </object>
+  <object id="91" name="objective_8" x="64" y="928" width="32" height="80">
+   <properties>
+    <property name="message" value="&quot;Get back to the Van.&quot;"/>
+    <property name="time" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
