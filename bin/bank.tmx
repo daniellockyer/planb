@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="76">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="81">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="512" height="512"/>
  </tileset>
@@ -61,7 +61,7 @@
    H4sIAAAAAAAAC+3NRw2AABTAUPQxDDAMMAwwDDAMMLxSE+RzaJN3bpKYmZmZmX1Tigw5ioB/iQo1moB/iw49hoD/iAkzloD/ig07joD/iQs3noC/2d96AQ+NKSkAEAAA
   </data>
  </layer>
- <objectgroup name="collision" visible="0">
+ <objectgroup name="collision">
   <object id="14" x="32" y="880" width="576" height="16"/>
   <object id="22" x="736" y="880" width="96" height="16"/>
   <object id="23" x="32" y="688" width="704" height="16"/>
@@ -71,7 +71,6 @@
   <object id="27" x="824" y="704" width="8" height="192"/>
   <object id="29" x="32" y="704" width="8" height="192"/>
   <object id="30" x="32" y="576" width="8" height="128"/>
-  <object id="31" x="32" y="512" width="640" height="64"/>
   <object id="32" x="664" y="576" width="8" height="32"/>
   <object id="33" x="832" y="688" width="160" height="16"/>
   <object id="34" x="984" y="704" width="8"/>
@@ -88,7 +87,6 @@
   <object id="57" x="608" y="224" width="96" height="64"/>
   <object id="58" x="832" y="224" width="160" height="64"/>
   <object id="61" x="928" y="96" width="64" height="128"/>
-  <object id="62" x="32" y="96" width="896" height="64"/>
   <object id="63" x="32" y="160" width="64" height="352"/>
   <object id="65" x="984" y="288" width="8" height="96"/>
   <object id="66" x="984" y="384" width="8" height="128"/>
@@ -99,5 +97,7 @@
   <object id="73" x="416" y="448" width="192" height="64"/>
   <object id="74" x="96" y="448" width="192" height="64"/>
   <object id="75" x="96" y="320" width="192" height="56"/>
+  <object id="76" x="32" y="144" width="896" height="16"/>
+  <object id="77" x="40" y="512" width="568" height="64"/>
  </objectgroup>
 </map>

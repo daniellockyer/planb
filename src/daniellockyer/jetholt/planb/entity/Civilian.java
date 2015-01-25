@@ -6,20 +6,19 @@ import daniellockyer.jetholt.planb.Level;
 import daniellockyer.jetholt.planb.Main;
 
 public class Civilian extends Entity {
-	private Image image;
-	private double angle = 90;
 	private float slowdown = 3.0f;
 
 	public Civilian(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
-		setSize(32, 32);
+		setSize(48, 96);
 	}
 
 	@Override
-	public void init(Main main,Level level) throws SlickException {
+	public void init(Main main, Level level) throws SlickException {
 		super.init(main, level);
-		image = new Image("civilian.png");
+		drawable = primary = new Image("player2.png");
+		// secondary = new Image("player.png");
 	}
 
 	@Override
@@ -48,8 +47,6 @@ public class Civilian extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(image, getX(), getY());
-		g.setColor(Color.red);
-		g.drawString(angle + "", (float) (position.x + 5), (float) (position.y + 5));
+		g.drawImage(primary, getX(), getY());
 	}
 }

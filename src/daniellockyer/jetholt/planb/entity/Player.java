@@ -10,6 +10,7 @@ public class Player extends Entity {
 	private Input input;
 	private double angle = 90;
 	private float slowdown = 3.0f;
+	private int ticker;
 
 	public Player(Input input) {
 		this.input = input;
@@ -61,6 +62,13 @@ public class Player extends Entity {
 
 		if (dx != 0 || dy != 0) {
 			moveCounter++;
+			ticker = 0;
+		} else {
+			ticker++;
+
+			if (ticker == 30) {
+				drawable = primary;
+			}
 		}
 
 		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1

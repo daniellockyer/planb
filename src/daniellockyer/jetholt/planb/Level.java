@@ -138,23 +138,18 @@ public class Level {
 
 	public boolean wall(Entity e, float xa, float ya) {
 		for (Wall w : walls) {
+			Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
+					+ main.yOffset, w.getWidth(), w.getHeight());
+
 			if (e instanceof Player) {
 				if (w.isWalkable()) continue;
-				Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
-						+ main.yOffset, w.getWidth(), w.getHeight());
 
-				Rectangle r2 = new Rectangle(e.getPosition().x + xa, e.getPosition().y
-						+ e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6);
-
-				if (r1.intersects(r2)) return true;
+				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y
+						+ e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6)))
+					return true;
 			} else if (e instanceof Bullet) {
-				Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
-						+ main.yOffset, w.getWidth(), w.getHeight());
-
-				Rectangle r2 = new Rectangle(e.getPosition().x + xa, e.getPosition().y,
-						e.getWidth(), e.getHeight());
-
-				if (r1.intersects(r2)) return true;
+				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y, e
+						.getWidth(), e.getHeight()))) return true;
 			}
 		}
 		return false;
