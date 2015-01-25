@@ -41,7 +41,7 @@
    H4sIAAAAAAAAC+2SbQqAIBBEt++sDtcR9gieoLM3QcEWEf6wLJoHD0TFwWFFCCGE/AmfOF+Z/zgNbKGDU4J8i5r1EPHd0Lm2+X3EfL046+S8/5j5oeiL8pdeCljCCmYwP+zVsp/fkDsbbtX2P97yK0II+Q4z1gR0lwAQAAA=
   </data>
  </layer>
- <layer name="wall_foyer" width="32" height="32">
+ <layer name="wall_foyer" width="32" height="32" >
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3NRwpCMRDG8VzAAraNDWwbG9g2NrDtBL2B3kBvoDd43uB5Uv+BEUJAF7p4izcDP2YSkvmMib72EdF8zdd8zdd8zdf8+OZfcZF+/IP9f/Du3nszyCKHPApO/h036UWUUP5htv9POEt2BVW5r6GOBppoOfkPBNLb6KDrzYkP9+4cOHts76Ev5wGGGGGMiZP/RCh9ihnm3pxECukvb0Jnj+0LLOW8whobbLEzWlpaWvGuF7GgJHMAEAAA
   </data>

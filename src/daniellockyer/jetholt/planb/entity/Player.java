@@ -1,7 +1,6 @@
 package daniellockyer.jetholt.planb.entity;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import daniellockyer.jetholt.planb.*;
@@ -31,28 +30,18 @@ public class Player extends Entity {
 	public void update() {
 		float dx = 0, dy = 0;
 
-		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			System.exit(0);
-		}
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) System.exit(0);
 
-		if (input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_UP)) {
-			dy--;
-		}
+		if (input.isKeyDown(Input.KEY_W)) dy--;
 
-		if (input.isKeyDown(Input.KEY_A) || input.isKeyDown(Input.KEY_LEFT)) {
-			dx--;
-		}
+		if (input.isKeyDown(Input.KEY_A)) dx--;
 
-		if (input.isKeyDown(Input.KEY_S) || input.isKeyDown(Input.KEY_DOWN)) {
-			dy++;
-		}
+		if (input.isKeyDown(Input.KEY_S)) dy++;
 
-		if (input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_RIGHT)) {
-			dx++;
-		}
+		if (input.isKeyDown(Input.KEY_D)) dx++;
 
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			level.add(new Bullet(position.copy().add(new Vector2f(16, 48)), angle));
+			level.add(new Bullet(position.copy().add(new Vector2f(24, 48)), angle));
 		}
 
 		if (dy == -1) angle = 0;
@@ -71,8 +60,7 @@ public class Player extends Entity {
 			}
 		}
 
-		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1
-				&& position.y + dy < Main.HEIGHT) {
+		if (position.x + dx >= 0 && position.x + dy + width < Main.WIDTH - 1 && position.y + dy < Main.HEIGHT) {
 
 			if (!level.wall(this, dx * slowdown, 0)) {
 				move(dx * slowdown, 0);
@@ -86,11 +74,9 @@ public class Player extends Entity {
 
 			try {
 				Wall w = level.getWallIntersect(this);
-				if (w.isWalkable()) {
-					if (!w.been()) {
-						w.done();
-						level.up();
-					}
+				if (w.isWalkable() && !w.been()) {
+					w.done();
+					level.up();
 				}
 			} catch (NullPointerException e) {
 			}
@@ -107,10 +93,6 @@ public class Player extends Entity {
 
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
 			level.translate(1);
-		}
-
-		if (input.isKeyPressed(Input.KEY_O)) {
-			level.up();
 		}
 	}
 }

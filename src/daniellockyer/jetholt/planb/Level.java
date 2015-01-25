@@ -3,15 +3,12 @@ package daniellockyer.jetholt.planb;
 import java.util.ArrayList;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
-import org.newdawn.slick.util.pathfinding.PathFindingContext;
-import org.newdawn.slick.util.pathfinding.TileBasedMap;
 
 import daniellockyer.jetholt.planb.entity.*;
 
-public class Level implements TileBasedMap {
+public class Level/* implements TileBasedMap */{
 	public static final int TILE_SIZE = 32;
 	public TiledMap map;
 	private Main main;
@@ -26,9 +23,12 @@ public class Level implements TileBasedMap {
 		this.map = map;
 
 		int objectGroupCount = map.getObjectGroupCount();
+
 		for (int gi = 0; gi < objectGroupCount; gi++) {
 			int objectCount = map.getObjectCount(gi);
+
 			for (int oi = 0; oi < objectCount; oi++) {
+				
 				int x = map.getObjectX(gi, oi);
 				int y = map.getObjectY(gi, oi);
 				int width = map.getObjectWidth(gi, oi);
@@ -57,9 +57,7 @@ public class Level implements TileBasedMap {
 		}
 
 		add(new Civilian(155, 630));
-		add(new Cop(220, 850));
-		// add(new Civilian(355, 630));
-		// add(new Civilian(555, 630));
+		// add(new Cop(220, 850));
 	}
 
 	public void update() {
@@ -120,16 +118,12 @@ public class Level implements TileBasedMap {
 		} catch (SlickException e1) {
 			e1.printStackTrace();
 		}
-
 	}
 
 	public Wall getWallIntersect(Entity e) {
 		for (Wall w : walls) {
-
 			Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getWidth(), w.getHeight());
-
 			Rectangle r2 = new Rectangle(e.getPosition().x, e.getPosition().y + e.getHeight() - (e.getHeight() / 6), e.getWidth(), e.getHeight() / 6);
-
 			if (r1.intersects(r2)) return w;
 		}
 		return null;
@@ -141,7 +135,6 @@ public class Level implements TileBasedMap {
 
 			if (e instanceof Player) {
 				if (w.isWalkable()) continue;
-
 				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y + e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6))) return true;
 			} else if (e instanceof Bullet) {
 				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y, e.getWidth(), e.getHeight()))) return true;
@@ -150,31 +143,14 @@ public class Level implements TileBasedMap {
 		return false;
 	}
 
-	@Override
-	public int getWidthInTiles() {
-		return Main.WIDTH / Level.TILE_SIZE;
-	}
-
-	@Override
-	public int getHeightInTiles() {
-		return Main.HEIGHT / Level.TILE_SIZE;
-	}
-
-	@Override
-	public void pathFinderVisited(int x, int y) {
-	}
-
-	@Override
-	public boolean blocked(PathFindingContext context, int tx, int ty) {
-		for (Wall w : walls) {
-			Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getWidth(), w.getHeight());
-			if (r.intersects(new Point(tx * Level.TILE_SIZE, ty * Level.TILE_SIZE))) { return true; }
-		}
-		return false;
-	}
-
-	@Override
-	public float getCost(PathFindingContext context, int tx, int ty) {
-		return 1.0f;
-	}
+	/*
+	 * @Override public int getWidthInTiles() { return Main.WIDTH / Level.TILE_SIZE; }
+	 * @Override public int getHeightInTiles() { return Main.HEIGHT / Level.TILE_SIZE; }
+	 * @Override public void pathFinderVisited(int x, int y) { }
+	 * @Override public boolean blocked(PathFindingContext context, int tx, int ty) { for (Wall w :
+	 * walls) { Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY() +
+	 * main.yOffset, w.getWidth(), w.getHeight()); if (r.intersects(new Point(tx * Level.TILE_SIZE,
+	 * ty * Level.TILE_SIZE))) { return true; } } return false; }
+	 * @Override public float getCost(PathFindingContext context, int tx, int ty) { return 1.0f; }
+	 */
 }
