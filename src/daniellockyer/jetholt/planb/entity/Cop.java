@@ -8,8 +8,6 @@ import daniellockyer.jetholt.planb.Level;
 import daniellockyer.jetholt.planb.Main;
 
 public class Cop extends Entity {
-	private Path path;
-	private AStarPathFinder pathFinder;
 
 	public Cop(float x, float y) {
 		this.position.x = x;
@@ -23,7 +21,6 @@ public class Cop extends Entity {
 
 		drawable = primary = new Image("cop1.png");
 		secondary = new Image("cop2.png");
-		pathFinder = new AStarPathFinder(level, 1000, true);
 	}
 
 	@Override
@@ -31,16 +28,26 @@ public class Cop extends Entity {
 		int dx = 0, dy = 0;
 
 		if (r.nextInt(20) == 0) {
-			dx--;
+			dx -= 5;
 		}
 
 		if (!level.wall(this, dx, 0)) {
-			move(dx, 0);
+			if (position.x + dx > 840) {
+				move(dx, 0);
+			}
 		}
 		if (!level.wall(this, 0, dy)) {
 			move(0, dy);
 		}
 
+		int angle = 0;
+
+		if (dy == -1) angle = 0;
+		if (dx == 1) angle = 90;
+		if (dy == 1) angle = 180;
+		if (dx == -1) angle = 270;
+
+		level.addTemp(new Bullet(getPosition(), angle));
 		// move(path.getStep(i).getX() - getX(), path.getStep(i).getY() - getY());
 	}
 

@@ -98,6 +98,10 @@ public class Player extends Entity {
 					System.exit(0);
 				}
 				if (objective == 4) {
+					level.add(new Cop(Main.WIDTH + 5, Main.HEIGHT + 150));
+					level.add(new Cop(Main.WIDTH + 25, Main.HEIGHT + 160));
+					level.add(new Cop(Main.WIDTH + 45, Main.HEIGHT + 155));
+
 					for (Entity e : level.entities) {
 						if (e instanceof BadGuy) {
 							((BadGuy) e).dead = true;

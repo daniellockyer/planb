@@ -73,9 +73,11 @@ public class BadGuy extends Entity {
 			case "move":
 				move(Float.parseFloat(c.getArguments()[0]), Float.parseFloat(c.getArguments()[1]));
 				moveCounter++;
+				break;
 			case "say":
 				this.main.gui.face(face);
 				this.main.gui.setMessage(c.getArguments()[0].replace("_", " "));
+				break;
 			default:
 				break;
 			}
