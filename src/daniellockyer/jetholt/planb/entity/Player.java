@@ -16,7 +16,7 @@ public class Player extends Entity {
 
 	public Player(Input input) {
 		this.input = input;
-		this.position.x = 30;
+		this.position.x = 50;
 		this.position.y = 475;
 		setSize(48, 96);
 	}
