@@ -23,17 +23,19 @@ public class Cop extends Entity {
 
 		drawable = primary = new Image("cop1.png");
 		secondary = new Image("cop2.png");
+
 		pathFinder = new AStarPathFinder(level, 1000, true);
 	}
 
 	@Override
 	public void update() {
-		path = pathFinder.findPath(null, getX() % Level.TILE_SIZE, //
-				getY() % Level.TILE_SIZE, //
-				main.player.getX() % Level.TILE_SIZE, //
-				main.player.getY() % Level.TILE_SIZE);
+		path = pathFinder.findPath(null, //
+				getX() / Level.TILE_SIZE, //
+				getY() / Level.TILE_SIZE, //
+				main.player.getX() / Level.TILE_SIZE, //
+				main.player.getY() / Level.TILE_SIZE);
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			move(path.getX(i) - getX(), path.getY(i) - getY());
 		}
 	}

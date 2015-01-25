@@ -57,7 +57,7 @@ public class Level implements TileBasedMap {
 		}
 
 		add(new Civilian(155, 630));
-		add(new Cop(20, 850));
+		add(new Cop(220, 850));
 		// add(new Civilian(355, 630));
 		// add(new Civilian(555, 630));
 	}
@@ -73,8 +73,7 @@ public class Level implements TileBasedMap {
 	}
 
 	public void translate(int amount) {
-		if (main.yOffset + (12 * amount) < -96 && main.yOffset + (12 * amount) > -372)
-			main.yOffset += 12 * amount;
+		if (main.yOffset + (12 * amount) < -96 && main.yOffset + (12 * amount) > -372) main.yOffset += 12 * amount;
 	}
 
 	public void render(Graphics g) {
@@ -96,8 +95,7 @@ public class Level implements TileBasedMap {
 		if (true) {
 			for (Wall w : walls) {
 				g.setColor(Color.green);
-				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w
-						.getBoundaries().getWidth(), w.getBoundaries().getHeight());
+				g.drawRect(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getBoundaries().getWidth(), w.getBoundaries().getHeight());
 			}
 		}
 
@@ -128,11 +126,9 @@ public class Level implements TileBasedMap {
 	public Wall getWallIntersect(Entity e) {
 		for (Wall w : walls) {
 
-			Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
-					+ main.yOffset, w.getWidth(), w.getHeight());
+			Rectangle r1 = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getWidth(), w.getHeight());
 
-			Rectangle r2 = new Rectangle(e.getPosition().x, e.getPosition().y + e.getHeight()
-					- (e.getHeight() / 6), e.getWidth(), e.getHeight() / 6);
+			Rectangle r2 = new Rectangle(e.getPosition().x, e.getPosition().y + e.getHeight() - (e.getHeight() / 6), e.getWidth(), e.getHeight() / 6);
 
 			if (r1.intersects(r2)) return w;
 		}
@@ -141,18 +137,14 @@ public class Level implements TileBasedMap {
 
 	public boolean wall(Entity e, float xa, float ya) {
 		for (Wall w : walls) {
-			Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
-					+ main.yOffset, w.getWidth(), w.getHeight());
+			Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getWidth(), w.getHeight());
 
 			if (e instanceof Player) {
 				if (w.isWalkable()) continue;
 
-				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y
-						+ e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6)))
-					return true;
+				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y + e.getHeight() - (e.getHeight() / 6) + ya, e.getWidth(), e.getHeight() / 6))) return true;
 			} else if (e instanceof Bullet) {
-				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y, e
-						.getWidth(), e.getHeight()))) return true;
+				if (r.intersects(new Rectangle(e.getPosition().x + xa, e.getPosition().y, e.getWidth(), e.getHeight()))) return true;
 			}
 		}
 		return false;
@@ -160,12 +152,12 @@ public class Level implements TileBasedMap {
 
 	@Override
 	public int getWidthInTiles() {
-		return Main.WIDTH % Level.TILE_SIZE;
+		return Main.WIDTH / Level.TILE_SIZE;
 	}
 
 	@Override
 	public int getHeightInTiles() {
-		return Main.HEIGHT % Level.TILE_SIZE;
+		return Main.HEIGHT / Level.TILE_SIZE;
 	}
 
 	@Override
@@ -175,9 +167,7 @@ public class Level implements TileBasedMap {
 	@Override
 	public boolean blocked(PathFindingContext context, int tx, int ty) {
 		for (Wall w : walls) {
-			Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY()
-					+ main.yOffset, w.getWidth(), w.getHeight());
-
+			Rectangle r = new Rectangle(w.getBoundaries().getX(), w.getBoundaries().getY() + main.yOffset, w.getWidth(), w.getHeight());
 			if (r.intersects(new Point(tx * Level.TILE_SIZE, ty * Level.TILE_SIZE))) { return true; }
 		}
 		return false;
