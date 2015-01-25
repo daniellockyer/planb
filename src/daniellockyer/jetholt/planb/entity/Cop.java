@@ -14,7 +14,7 @@ public class Cop extends Entity {
 	public Cop(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
-		setSize(32, 96);
+		setSize(48, 96);
 	}
 
 	@Override
@@ -32,12 +32,18 @@ public class Cop extends Entity {
 				main.player.getX() / Level.TILE_SIZE, main.player.getY() / Level.TILE_SIZE);
 		if (path != null) {
 			for (int i = 0; i < 1; i++) {
-				// position.x = path.getX(i);
-				// position.y = path.getY(i);
+
+				System.out.println(getX() / Level.TILE_SIZE + " - " + path.getX(i));
+
+				int newX = ((getX() / Level.TILE_SIZE) - path.getX(i));
+				if (!level.wall(this, newX, 0)) move(newX, 0);
+
+				int newY = ((getY() % Level.TILE_SIZE) - path.getY(i));
+				if (!level.wall(this, 0, newY)) move(0, newY);
+
 				// move(path.getStep(i).getX() - getX(), path.getStep(i).getY() - getY());
 			}
 		}
-
 	}
 
 	@Override

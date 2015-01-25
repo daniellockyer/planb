@@ -76,7 +76,7 @@ public class Level implements TileBasedMap {
 		main.gui.setMessage(objectiveList.get(0).getMessage());
 
 		// add(new Civilian(155, 630));
-		// add(new Cop(220, 850));
+		add(new Cop(500, 850));
 	}
 
 	public void update() {
