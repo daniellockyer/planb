@@ -28,20 +28,20 @@ public class Cop extends Entity {
 
 	@Override
 	public void update() {
-		path = pathFinder.findPath(null, getX() / Level.TILE_SIZE, getY() % Level.TILE_SIZE, //
-				main.player.getX() / Level.TILE_SIZE, main.player.getY() / Level.TILE_SIZE);
-		if (path != null) {
-			for (int i = 0; i < 1; i++) {
+		int dx = 0, dy = 0;
 
-				int newX = ((getX() / Level.TILE_SIZE) - path.getX(i));
-				if (!level.wall(this, newX, 0)) move(newX, 0);
-
-				int newY = ((getY() % Level.TILE_SIZE) - path.getY(i));
-				if (!level.wall(this, 0, newY)) move(0, newY);
-
-				// move(path.getStep(i).getX() - getX(), path.getStep(i).getY() - getY());
-			}
+		if (r.nextInt(20) == 0) {
+			dx--;
 		}
+
+		if (!level.wall(this, dx, 0)) {
+			move(dx, 0);
+		}
+		if (!level.wall(this, 0, dy)) {
+			move(0, dy);
+		}
+
+		// move(path.getStep(i).getX() - getX(), path.getStep(i).getY() - getY());
 	}
 
 	@Override

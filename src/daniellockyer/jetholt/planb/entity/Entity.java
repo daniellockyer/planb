@@ -15,10 +15,11 @@ public abstract class Entity {
 	public boolean removed = false;
 	protected int direction;
 	protected float slowdown = 3.0f;
-	protected Image drawable;
+	protected Image drawable, deadImage;
 	public int health = 10;
-	protected Image primary, secondary;
+	public Image primary, secondary;
 	protected Main main;
+	public boolean dead = false;
 	protected final int MAX_MOVE = 10;
 	protected int moveCounter = 0;
 	protected Random r = new Random();

@@ -1,7 +1,6 @@
 package daniellockyer.jetholt.planb;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Point;
@@ -75,11 +74,40 @@ public class Level implements TileBasedMap {
 
 		main.gui.setMessage(objectiveList.get(0).getMessage());
 
-		// add(new Civilian(155, 630));
-		// add(new Cop(500, 850));
+		add(new Civilian(840, 470, 4, 0));
+		add(new Civilian(500, 580, 2, 0));
+	}
+
+	public boolean getBadGuys(Entity from) {
+		double x1 = main.player.getX() - from.getX();
+		double y1 = main.player.getY() - from.getY() - main.yOffset;
+		if (Math.sqrt(x1 * x1 + y1 * y1) < 200) return true;
+
+		for (Entity e : entities) {
+			if (!(e instanceof BadGuy)) continue;
+			if (e == from) continue;
+			double dx = e.getPosition().x - from.getX();
+			double dy = e.getPosition().y - main.yOffset - from.getY();
+
+			if (Math.sqrt(dx * dx + dy * dy) < 200) return true;
+		}
+		return false;
 	}
 
 	public void update() {
+		if (objectiveList.get(0).getID() > 8) {
+			System.exit(0);
+		} else if (objectiveList.get(0).getID() > 2) {
+			if (new Random().nextInt(20) == 0) {
+				int toAdd = new Random().nextInt(1);
+
+				for (int i = 0; i < toAdd; i++) {
+					add(new Cop(Main.WIDTH + 5, Main.HEIGHT + main.yOffset - 75));
+				}
+			}
+
+		}
+
 		ArrayList<Entity> toremove = new ArrayList<Entity>();
 
 		for (Entity e : entities) {

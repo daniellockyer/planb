@@ -2,12 +2,18 @@
 1 set -30 849
 420 move 2 0
 1 move -1 0
+120 say We'll_wait_out_here
 
 [jet]
 1 set -75 839
 410 move 2 0
 1 move -1 0
+120 delay
+120 say I'll_come_in_with_you
+30 move -3 0
+30 move 0 -3
+10 move 2 0 
 
-[trex]
+[twrecks]
 1 set -115 844
 340 move 2 0

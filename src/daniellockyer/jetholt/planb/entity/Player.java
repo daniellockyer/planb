@@ -14,8 +14,6 @@ public class Player extends Entity {
 	private boolean inArea = false;
 	public int objective = 1;
 
-	// private float progress;
-
 	public Player(Input input) {
 		this.input = input;
 		this.position.x = 30;
@@ -95,15 +93,24 @@ public class Player extends Entity {
 			inArea = true;
 			timer++;
 
-			if (timer == o.getTimesec() * 60) {
+			if (timer >= o.getTimesec() * 60) {
+				if (objective == 8) {
+					System.exit(0);
+				}
+				if (objective == 4) {
+					for (Entity e : level.entities) {
+						if (e instanceof BadGuy) {
+							((BadGuy) e).dead = true;
+							if (((BadGuy) e).isJet) e.setPosition(680, 680);
+						}
+					}
+				}
+
 				timer = 0;
 				objective++;
 				level.objectiveList.remove(0);
-				main.gui.setMessage(level.objectiveList.get(0).getMessage());
+				main.gui.setMessage("Objective " + level.objectiveList.get(0).getID() + ": " + level.objectiveList.get(0).getMessage());
 			}
-
-			// progress = (float) (timer / level.objectiveList.get(0).getTimesec()) * getWidth() /
-			// 100;
 		} else {
 			inArea = false;
 			timer = 0;
@@ -127,10 +134,10 @@ public class Player extends Entity {
 	public void render(Graphics g) {
 		super.render(g);
 
-		/*
-		 * if (inArea) { g.setColor(Color.gray); g.drawRect(getX(), getY() - 20, getWidth(), 15);
-		 * g.setColor(Color.green); g.fillRect(getX() + 1, getY() - 19, progress, 13); }
-		 */
+		if (inArea) {
+			g.setColor(Color.red);
+			g.drawString("" + (int) (level.objectiveList.get(0).getTimesec() - timer / 60), getX(), getY() - 5);
+		}
 
 		if (Main.DEBUG) {
 			g.setColor(Color.pink);
