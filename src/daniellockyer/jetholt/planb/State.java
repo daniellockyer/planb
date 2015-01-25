@@ -5,7 +5,7 @@ public enum State {
 	FOYER(new String[] { "wall_foyer" }), //
 	OFFICES(new String[] { "wall_offices" }), //
 	PREVAULT(new String[] { "wall_prevault" }), //
-	VAULT(new String[] { /* "wall_vault" */});
+	VAULT(new String[] { "wall_vault" });
 
 	private final String[] show;
 

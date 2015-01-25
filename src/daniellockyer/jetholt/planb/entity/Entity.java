@@ -14,6 +14,7 @@ public abstract class Entity {
 	protected float width, height;
 	public boolean removed = false;
 	protected int direction;
+	protected float slowdown = 3.0f;
 	protected Image drawable;
 	public int health = 10;
 	protected Image primary, secondary;

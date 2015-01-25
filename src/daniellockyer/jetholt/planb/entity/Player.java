@@ -113,14 +113,4 @@ public class Player extends Entity {
 			level.up();
 		}
 	}
-
-	@Override
-	public void render(Graphics g) {
-		super.render(g);
-		g.setColor(Color.pink);
-		Rectangle r2 = new Rectangle(getPosition().x, getPosition().y + getHeight()
-				- (getHeight() / 6), getWidth(), getHeight() / 6);
-
-		g.draw(r2);
-	}
 }
