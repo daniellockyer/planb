@@ -43,13 +43,21 @@ public class Cop extends Entity {
 
 		for (Entity e : level.entities) {
 			if (e instanceof Player) {
-
-			} else if (e instanceof BadGuy) {
-				Vector2f directionVector = this.getPosition().sub(e.position);
-
+				Vector2f directionVector = this.getPosition().copy().sub(e.position.copy());
 				double bulletAngle = Math.toDegrees(Math.atan(directionVector.y / directionVector.x));
 
-				level.addTemp(new Bullet(position, bulletAngle));
+				System.out.println(bulletAngle);
+
+				// level.add(new Bullet(position, bulletAngle));
+				level.addTemp(new Bullet(position.copy(), bulletAngle));
+				break;
+			} else if (e instanceof BadGuy) {
+				Vector2f directionVector = this.getPosition().copy().sub(e.position);
+				double bulletAngle = Math.toDegrees(Math.atan(directionVector.y / directionVector.x));
+
+				// level.add(new Bullet(position, bulletAngle));
+				// level.addTemp(new Bullet(position.copy(), bulletAngle));
+				break;
 			}
 		}
 	}

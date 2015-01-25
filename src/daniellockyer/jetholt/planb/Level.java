@@ -72,8 +72,8 @@ public class Level {
 
 		main.gui.setMessage(objectiveList.get(0).getMessage());
 
-		add(new Civilian(840, 470, 4, 0));
-		add(new Civilian(500, 580, 2, 0));
+		//add(new Civilian(840, 470, 4, 0));
+		//add(new Civilian(500, 580, 2, 0));
 	}
 
 	public boolean getBadGuys(Entity from) {
@@ -101,6 +101,8 @@ public class Level {
 		}
 		entities.removeAll(toremove);
 
+		System.out.println(tempEntities.size());
+		
 		entities.addAll(tempEntities);
 		tempEntities.clear();
 	}

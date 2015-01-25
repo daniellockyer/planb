@@ -18,7 +18,7 @@ public class Main extends BasicGame {
 	public GUI gui;
 	private Level level;
 	public int yOffset = -12 * Level.TILE_SIZE;
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	public Main(String gamename) {
 		super(gamename);

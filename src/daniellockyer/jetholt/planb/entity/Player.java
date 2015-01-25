@@ -18,7 +18,6 @@ public class Player extends Entity {
 		this.input = input;
 		this.position.x = 30;
 		this.position.y = 475;
-
 		setSize(48, 96);
 	}
 
@@ -98,9 +97,9 @@ public class Player extends Entity {
 					System.exit(0);
 				}
 				if (objective == 4) {
-					level.add(new Cop(Main.WIDTH + 5, Main.HEIGHT + 150));
-					level.add(new Cop(Main.WIDTH + 25, Main.HEIGHT + 160));
-					level.add(new Cop(Main.WIDTH + 45, Main.HEIGHT + 155));
+					level.add(new Cop(600, Main.HEIGHT + 220));
+					level.add(new Cop(610, Main.HEIGHT + 210));
+					level.add(new Cop(640, Main.HEIGHT + 215));
 
 					for (Entity e : level.entities) {
 						if (e instanceof BadGuy) {
