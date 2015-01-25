@@ -79,7 +79,23 @@ public class Player extends Entity {
 			try {
 				Wall w = level.getWallIntersect(this);
 				if (w.isWalkable() && !w.been()) {
-					level.up(w);
+					switch (w.getName()) {
+					case "collision_door_main":
+						level.up(w);
+						break;
+					case "collision_door_staff":
+						if (objective < 2) break;
+						level.up(w);
+						break;
+					case "collision_door_prevault":
+						if (objective < 6) break;
+						level.up(w);
+						break;
+					case "collision_door_vault":
+						if (objective < 7) break;
+						level.up(w);
+						break;
+					}
 				}
 			} catch (NullPointerException e) {
 			}
